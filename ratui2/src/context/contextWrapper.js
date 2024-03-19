@@ -8,7 +8,8 @@ export const ContextWrapper = ({children})=> {
     const [name, setName] = useState("Argelio Baca");
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [user, setUser] = useState()
-    const [candidates, setCandidates] = useState()
+    const [candidates] = useState()
+    const [token, setToken] = useState(localStorage.getItem('jwt-token'));
     const uri = process.env.REACT_APP_URI
     /*Global Functions*/
     const changeName = (newName)=>{
@@ -44,6 +45,7 @@ export const ContextWrapper = ({children})=> {
             localStorage.removeItem("jwt-token")
             localStorage.removeItem("username")
             localStorage.removeItem("isLoggedIn")
+            setToken(null)
         } catch (error) {
             throw new Error(error)
         }
@@ -78,7 +80,8 @@ export const ContextWrapper = ({children})=> {
             user,
             candidates,
             logout,
-            signUp
+            signUp,
+            token
             }}>
             {children}
         </AppContext.Provider>

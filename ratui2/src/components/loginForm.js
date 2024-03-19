@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../context/contextWrapper";
-import App from "../App";
 
 //const uri = process.env.REACT_APP_URI
 
