@@ -36,3 +36,80 @@
     transform: rotate(360deg);
   }
 }
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  padding-top: 20px;
+  transition: 0.5s;
+  overflow-x: hidden;
+}
+
+.sidenav.open {
+  width: 100px;
+}
+
+.sidenav a {
+  padding: 10px 15px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+}
+
+.sidenav a:hover {
+  background-color: #555;
+}
+
+.toggle-btn-open {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
+.toggle-btn-close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.main {
+  margin-left: 0;
+  padding: 20px;
+  transition: margin-left 0.5s;
+}
+
+.main {
+  margin-left: 200px;
+}
+
+/* Responsive layout - when the screen is less than 768px wide, make the sidebar and the main content area stack on top of each other */
+@media screen and (max-width: 768px) {
+  .sidenav {
+    width: 0;
+  }
+  .sidenav.open {
+    width: 100%;
+  }
+  .sidenav a {
+    float: left;
+    width: 100%;
+  }
+  .main {
+    margin-left: 0;
+  }
+}

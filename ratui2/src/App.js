@@ -1,13 +1,18 @@
 import './App.css';
+import { useContext } from 'react';
 import router from './routing/router.js';
 import { RouterProvider } from 'react-router-dom';
+import { ContextWrapper } from './context/contextWrapper.js';
 
 function App() {
   const msg = process.env.REACT_APP_MSG
   console.log(msg)
+  const context = useContext(ContextWrapper)
   return (
     <div className="App">
-      <RouterProvider router={router}/>
+      <ContextWrapper value={context}>
+        <RouterProvider router={router}/>
+      </ContextWrapper>
     </div>
   );
 }
