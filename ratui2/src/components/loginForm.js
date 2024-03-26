@@ -1,96 +1,51 @@
-import React, { useContext, useState } from "react";
+import React, {useState, useContext} from "react";
+import { useNavigate } from "react-router-dom";
+import loginPic from '../pictures/logoPic.png';
 import { AppContext } from "../context/contextWrapper";
 
-//const uri = process.env.REACT_APP_URI
-
-function LoginForm() {
+const LoginForm = () => {
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
   const { login } = useContext(AppContext)
+  const navigate = useNavigate()
 
-const loginClick = async (e) => {
-  e.preventDefault()
-  const result = await login(username, password)
-  console.log(result)
-}
+    const loginClick = async (e) => {
+    e.preventDefault()
+    const result = await login(username, password)
+    if (result) {
+        window.location.reload()
+        navigate("/upload")
+    } else {
+        alert("error validating your credentials")
+    }
+    console.log(result)
+    }
 
-  return (
-    <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
-          </h2>
-        </div>
-
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={loginClick}>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
-              </label>
-              <div className="mt-2">
-                <input
-                  onChange={(e)=>{setUsername(e.target.value)}}
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                  Password
-                </label>
-                <div className="text-sm">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
-                  </a>
+    return(
+        <div className="container-sm rounded-3 border border-secondary-subtle p-5 bg-info-subtle text-info-emphasis">
+            <form onSubmit={loginClick}>
+                <div class="mb-3 d-flex justify-content-center">
+                    <div className="d-flex justify-content-center w-25">
+                    <img src={loginPic} class="img-fluid" alt="..."/>
+                    </div>
                 </div>
-              </div>
-              <div className="mt-2">
-                <input
-                  onChange={(e)=>{setPassword(e.target.value)}}
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                />
-              </div>
-            </div>
-
-            <div>
-              <button
-                type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-              >
-                Sign in
-              </button>
-            </div>
-          </form>
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Start a 14 day free trial
-            </a>
-          </p>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label"><p className="fw-lighter">Email address</p></label>
+                    <input onChange={(e)=>{setUsername(e.target.value)}} type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"/>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label"><p className="fw-lighter">Password</p></label>
+                    <input onChange={(e)=>{setPassword(e.target.value)}} type="password" class="form-control" id="exampleInputPassword1"/>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1"/>
+                    <label class="form-check-label" for="exampleCheck1"><p className="fw-lighter">Check me out</p></label>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
         </div>
-      </div>
-    </>
-  )
+        
+    )
 }
-
 
 export default LoginForm;

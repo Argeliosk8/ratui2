@@ -1,0 +1,17 @@
+.sidebar-left {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+}
+.sidebar-right {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+}
+
+.centerbar {
+    max-width: 350px;
+    max-height: 450px;
+    min-width: 350px;
+    min-height: 450px;
+}

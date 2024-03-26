@@ -9,7 +9,7 @@ function App() {
   console.log(msg)
   const context = useContext(ContextWrapper)
   return (
-    <div className="App">
+    <div className="container h-100 w-100 p-0">
       <ContextWrapper value={context}>
         <RouterProvider router={router}/>
       </ContextWrapper>

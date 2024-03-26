@@ -1,6 +1,6 @@
 
 import { Outlet } from "react-router";
-import SideNav from "../components/navBar";
+import NavBar from "../components/navBar";
 import { Main } from "../pages/loginPage";
 import { useState } from "react";
 
@@ -12,7 +12,7 @@ function Root() {
             {
                 token ? (
                 <>
-                    <SideNav></SideNav>
+                    <NavBar></NavBar>
                     <Outlet />
                 </>
                 ) : (
