@@ -1,25 +1,29 @@
-
 import { Outlet } from "react-router";
 import NavBar from "../components/navBar";
-import { Main } from "../pages/loginPage";
+import SideNavbar from "../components/sideNavBar";
+import { LoginPage } from "../pages/loginPage";
 import { useState } from "react";
 
 function Root() {
     const [token] = useState(localStorage.getItem('jwt-token'))
     console.log(token)
     return(
-        <div>
+        <>
             {
                 token ? (
-                <>
-                    <NavBar></NavBar>
-                    <Outlet />
-                </>
+                <div className="row">
+                    <div className="col-3">
+                        <SideNavbar></SideNavbar>
+                    </div>
+                    <div className="col-9">
+                        <Outlet />
+                    </div>
+                </div>
                 ) : (
-                    <Main></Main>
+                    <LoginPage></LoginPage>
                 )
             }
-        </div>
+        </>
     )
 }
 

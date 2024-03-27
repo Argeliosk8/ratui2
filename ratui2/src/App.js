@@ -9,7 +9,7 @@ function App() {
   console.log(msg)
   const context = useContext(ContextWrapper)
   return (
-    <div className="container h-100 w-100 p-0">
+    <div className="container-fluid h-100 p-0 m-0">
       <ContextWrapper value={context}>
         <RouterProvider router={router}/>
       </ContextWrapper>

@@ -1,15 +1,14 @@
-import React from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom";
+import React  from 'react';
+import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 import Root from './root';
-import { Main } from '../pages/loginPage.js';
+import { LoginPage } from '../pages/loginPage.js';
 import SubmitCandidate from '../components/submitCandidate.js';
 
-
-const router = createBrowserRouter(
+ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
           <Route>
-            <Route path='/' element={<Main></Main>}/>
+            <Route path='/' element={<LoginPage></LoginPage>}/>
           </Route>
           <Route  element={<Root />}> 
             <Route path="/upload" element={<SubmitCandidate />} />

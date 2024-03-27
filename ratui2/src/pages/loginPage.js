@@ -2,7 +2,7 @@ import React from "react";
 import LoginForm from "../components/loginForm";
 import '../styles/loginPage.css';
 
-export const Main = ()=> {
+export const LoginPage = ()=> {
     return (
 <div class="container w-100 h-100 p-0">
   <div class="row align-items-center h-100 w-100 m-0">
@@ -20,3 +20,4 @@ export const Main = ()=> {
       
     )
   }
+
