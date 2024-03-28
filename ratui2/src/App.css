@@ -38,5 +38,46 @@
 }
 
 
+#sideNav * {
+  background-color: #50727B;
+  color: whitesmoke;
+}
+
+#navLinks a:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+body {
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+  font-variation-settings:    "wdth" 87.5;
+  background-color: whitesmoke;
+}
+
+#loginForm {
+  background-color: #50727B;
+}
+
+#loginForm label {
+  color: whitesmoke;
+}
+
+#signUpModal * {
+  background-color: #50727B;
+  color: whitesmoke;
+}
+
+#signupModal input {
+  background-color: whitesmoke !important;
+  color: whitesmoke !important;
+}
+.navlink {
+  color: whitesmoke;
+}
+
+
 /* Responsive layout - when the screen is less than 768px wide, make the sidebar and the main content area stack on top of each other */
 
