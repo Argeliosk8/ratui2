@@ -40,6 +40,20 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
+    const signUp2 = async (newUser) => {
+        try {
+            const res = await fetch(`${uri}/user/signup`,{
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newUser)
+            })
+            if(!res.ok) throw Error("There was a problem with your signup request")
+            return 'Successful signup!'
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const logout = ()=>{
         try {
             localStorage.removeItem("jwt-token")
@@ -54,7 +68,7 @@ export const ContextWrapper = ({children})=> {
 
     const signUp = async (newUser) => {
         try {
-            const resp = await fetch('http://localhost:5000/signup', {
+            const resp = await fetch(`${uri}/user/signup`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newUser)
@@ -81,7 +95,8 @@ export const ContextWrapper = ({children})=> {
             candidates,
             logout,
             signUp,
-            token
+            token,
+            signUp2
             }}>
             {children}
         </AppContext.Provider>
