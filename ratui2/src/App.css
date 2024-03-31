@@ -43,7 +43,7 @@
   color: whitesmoke;
 }
 
-#navLinks a:hover {
+#navLink:hover {
   background-color: whitesmoke;
   color: black;
 }

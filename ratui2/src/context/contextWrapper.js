@@ -32,6 +32,7 @@ export const ContextWrapper = ({children})=> {
             localStorage.setItem("jwt-token", data.token)
             localStorage.setItem("username", data.user.profile.first_name)
             localStorage.setItem("isLoggedIn", true)
+            localStorage.setItem("email", data.user.email)
             setIsLoggedIn(true)
             setUser(data.user)
             return `Login validated for user: ${data.user.profile.first_name}`
@@ -59,6 +60,7 @@ export const ContextWrapper = ({children})=> {
             localStorage.removeItem("jwt-token")
             localStorage.removeItem("username")
             localStorage.removeItem("isLoggedIn")
+            localStorage.removeItem("email")
             setToken(null)
         } catch (error) {
             throw new Error(error)
