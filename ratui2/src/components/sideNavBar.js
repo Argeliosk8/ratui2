@@ -3,8 +3,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import ratLogoSolo from '../pictures/rat-logo-solo.png'
 import DropdownButtonNav from './dropDownButtonNav.js'
+import { useNavigate } from 'react-router-dom';
 
 function SideNavBar() {
+  const navigate = useNavigate()
   return (
     <Navbar id="sideNav" expand="lg" className='h-100 p-0'>
       <Container className='flex-column h-100 w-100 p-0 ms-2 me-2'>
@@ -14,7 +16,7 @@ function SideNavBar() {
                     <img src={ratLogoSolo} class="img-fluid" alt="..."/>
                     </div>
             </div>
-            <Nav.Link id="navLink"className="text-center" href="#">Home</Nav.Link>
+            <Nav.Link id="navLink"className="text-center" onClick={()=>{navigate('/mytracker')}}>My Tracker</Nav.Link>
             <Nav.Link id="navLink" className="text-center"  href="#">About</Nav.Link>
             <Nav.Link id="navLink" className="text-center" href="#">Services</Nav.Link>
             <Nav.Link id="navLink" className="text-center"  href="#">Contact</Nav.Link>

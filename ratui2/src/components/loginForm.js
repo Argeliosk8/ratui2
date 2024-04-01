@@ -19,8 +19,7 @@ const LoginForm = () => {
     e.preventDefault()
     const result = await login(username, password)
     if (result) {
-        window.location.reload()
-        navigate("/upload")
+        navigate("/mytracker")
     } else {
         alert("error validating your credentials")
     }

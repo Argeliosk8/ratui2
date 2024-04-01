@@ -3,6 +3,7 @@ import { createBrowserRouter, createRoutesFromElements, Route } from "react-rout
 import Root from './root';
 import { LoginPage } from '../pages/loginPage.js';
 import SubmitCandidate from '../components/submitCandidate.js';
+import { MyTracker } from '../pages/myTracker.js';
 
  const router = createBrowserRouter(
   createRoutesFromElements(
@@ -12,6 +13,7 @@ import SubmitCandidate from '../components/submitCandidate.js';
           </Route>
           <Route  element={<Root />}> 
             <Route path="/upload" element={<SubmitCandidate />} />
+            <Route path="/mytracker" element={<MyTracker />} />
           </Route>
     </Route>
   )

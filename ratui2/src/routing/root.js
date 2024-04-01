@@ -36,7 +36,7 @@ function Root() {
         <>
             {
                 token ? (
-                <div className="row h-100 w-100 mb-auto">
+                <div className="row h-100 w-100">
                     <div className={`col-${navCol} p-0`}>
                         <SideNavbar></SideNavbar>
                     </div>
