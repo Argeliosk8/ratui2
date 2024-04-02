@@ -84,6 +84,23 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
+    const getJobs = async() => {
+        try {
+            const resp = await fetch(`${uri}/job/findall`, {
+                method: 'GET',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+            }
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     return (
         
@@ -98,7 +115,8 @@ export const ContextWrapper = ({children})=> {
             logout,
             signUp,
             token,
-            signUp2
+            signUp2,
+            getJobs
             }}>
             {children}
         </AppContext.Provider>
