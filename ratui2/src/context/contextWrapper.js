@@ -9,7 +9,7 @@ export const ContextWrapper = ({children})=> {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [user, setUser] = useState()
     const [candidates] = useState()
-    const [token, setToken] = useState(localStorage.getItem('jwt-token'));
+    const [token, setToken] = useState();
     const uri = process.env.REACT_APP_URI
     /*Global Functions*/
     const changeName = (newName)=>{
@@ -35,6 +35,7 @@ export const ContextWrapper = ({children})=> {
             localStorage.setItem("email", data.user.email)
             setIsLoggedIn(true)
             setUser(data.user)
+            setToken(data.token)
             return `Login validated for user: ${data.user.profile.first_name}`
         } catch (error) {
             console.log(error)
