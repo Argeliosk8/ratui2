@@ -86,5 +86,18 @@ p {
   visibility: visible;
 }
 
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.scrollablediv {
+  width: 200px;
+      height: 200px;
+      overflow: scroll;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border: none;
+}
 /* Responsive layout - when the screen is less than 768px wide, make the sidebar and the main content area stack on top of each other */
 

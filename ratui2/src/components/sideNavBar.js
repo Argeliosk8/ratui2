@@ -17,7 +17,7 @@ function SideNavBar() {
                     </div>
             </div>
             <Nav.Link id="navLink"className="text-center" onClick={()=>{navigate('/mytracker')}}>My Tracker</Nav.Link>
-            <Nav.Link id="navLink" className="text-center"  href="#">About</Nav.Link>
+            <Nav.Link id="navLink"className="text-center" onClick={()=>{navigate('/projects')}}>Projects</Nav.Link>
             <Nav.Link id="navLink" className="text-center" href="#">Services</Nav.Link>
             <Nav.Link id="navLink" className="text-center"  href="#">Contact</Nav.Link>
             <Navbar.Brand className="mt-auto me-0 text-center" href="#">

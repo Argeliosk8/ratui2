@@ -103,6 +103,43 @@ export const ContextWrapper = ({children})=> {
     }
 
 
+    const createProject = async (newProject) => {
+        try {
+            const resp = await fetch(`${uri}/project/addone`, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` 
+            },
+                body: JSON.stringify(newProject)
+            })
+            if(!resp.ok) console.log("There was an error creating your project")
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+
+    const getProjects = async() => {
+        try {
+            const resp = await fetch(`${uri}/project/findall`, {
+                method: 'GET',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+            }
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         
         <AppContext.Provider value={{
@@ -117,7 +154,9 @@ export const ContextWrapper = ({children})=> {
             signUp,
             token,
             signUp2,
-            getJobs
+            getJobs,
+            createProject,
+            getProjects
             }}>
             {children}
         </AppContext.Provider>
