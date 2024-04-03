@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, useState, useEffect } from "react";
 import { AppContext } from "../context/contextWrapper";
-//import DatePickerComponent from "../components/datePicker";
+import ActivityTable from "./activityTable";
 
 export const JobsList = ()=> {
  
@@ -32,7 +32,7 @@ export const JobsList = ()=> {
               </h2>
               <div id={"collapse" + index} class="accordion-collapse collapse" aria-labelledby={"heading" + index} data-bs-parent="#accordionExample">
               <div className="accordion-body">
-                  <p>Hello this is a sample text</p>
+                  <ActivityTable></ActivityTable>
               </div>
               </div>
           </div>
