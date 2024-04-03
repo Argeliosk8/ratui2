@@ -9,7 +9,7 @@ export const ContextWrapper = ({children})=> {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [user, setUser] = useState()
     const [candidates] = useState()
-    const [token, setToken] = useState();
+    const [token, setToken] = useState(localStorage.getItem('jwt-token'));
     const uri = process.env.REACT_APP_URI
     /*Global Functions*/
     const changeName = (newName)=>{

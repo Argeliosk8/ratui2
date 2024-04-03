@@ -19,15 +19,23 @@ export const JobsList = ()=> {
 // eslint-disable-next-line
   },[])
 
-
  
  return (
-  <div>
+  <div className="accordion" id="accordionExample">
   {
-        jobs ? jobs.map((job, index) => (
-          <p key={index}>
-            {job.name}
-          </p>
+        jobs ? jobs.map((job, index) => (       
+          <div className="accordion-item">
+              <h2 className="accordion-header" id={"heading" + index}>
+              <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse" + index} aria-expanded="false" aria-controls={"collapse" + index}>
+                  {job.name}
+              </button>
+              </h2>
+              <div id={"collapse" + index} class="accordion-collapse collapse" aria-labelledby={"heading" + index} data-bs-parent="#accordionExample">
+              <div className="accordion-body">
+                  <p>Hello this is a sample text</p>
+              </div>
+              </div>
+          </div>
         )) : <div>Loading...</div> 
   }
   </div>

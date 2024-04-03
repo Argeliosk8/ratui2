@@ -57,6 +57,10 @@ body {
   background-color: whitesmoke;
 }
 
+p {
+  color: black;
+}
+
 #loginForm {
   background-color: #50727B;
 }
@@ -78,6 +82,9 @@ body {
   color: whitesmoke;
 }
 
+.collapse.show {
+  visibility: visible;
+}
 
 /* Responsive layout - when the screen is less than 768px wide, make the sidebar and the main content area stack on top of each other */
 
