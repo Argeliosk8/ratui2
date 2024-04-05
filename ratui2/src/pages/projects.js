@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/esm/Button";
-import CreateProjectModal from "../components/createProjectModal";
+import CreateProjectModal from "../modals/createProjectModal";
 import { ProjectCards } from "../components/projectCards";
 
 export const Projects = ()=> {

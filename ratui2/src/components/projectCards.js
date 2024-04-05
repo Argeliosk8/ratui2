@@ -1,13 +1,11 @@
 import React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../context/contextWrapper"
 import Card from 'react-bootstrap/Card';
 
 
 export const ProjectCards = ()=> {
- 
-  const { getProjects } = useContext(AppContext)
-  const [projects, setProjects] = useState([])
+  const { getProjects, projects, setProjects } = useContext(AppContext)
 
   const fetchProjects = async ()=>{
     const data = await getProjects()
@@ -19,14 +17,12 @@ export const ProjectCards = ()=> {
     fetchProjects()
 // eslint-disable-next-line
   },[])
-
- 
  return (
 <div  className="container-fluid w-100 flex-wrap">
   {
     projects ? projects.map((project, i) => (
       <div className="p-2">
-        <Card style={{ width: '18rem' }} id={i}>
+        <Card style={{ width: '16rem' }} id={i}>
       <Card.Body>
         <Card.Title>{project.client_name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{project.status}</Card.Subtitle>

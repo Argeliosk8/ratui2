@@ -1,12 +1,11 @@
 import React from "react";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../context/contextWrapper";
 import ActivityTable from "./activityTable";
 
 export const JobsList = ()=> {
  
-  const { getJobs } = useContext(AppContext)
-  const [jobs, setJobs] = useState([])
+  const { getJobs, jobs, setJobs } = useContext(AppContext)  
 
   const fetchJobs = async ()=>{
     const data = await getJobs()

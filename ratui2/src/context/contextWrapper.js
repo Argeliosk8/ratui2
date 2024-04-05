@@ -9,7 +9,9 @@ export const ContextWrapper = ({children})=> {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [user, setUser] = useState()
     const [candidates] = useState()
+    const [projects, setProjects] = useState([]);
     const [token, setToken] = useState(localStorage.getItem('jwt-token'));
+    const [jobs, setJobs] = useState([])
     const uri = process.env.REACT_APP_URI
     /*Global Functions*/
     const changeName = (newName)=>{
@@ -156,7 +158,11 @@ export const ContextWrapper = ({children})=> {
             signUp2,
             getJobs,
             createProject,
-            getProjects
+            getProjects,
+            projects, 
+            setProjects,
+            jobs,
+            setJobs
             }}>
             {children}
         </AppContext.Provider>

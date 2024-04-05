@@ -10,13 +10,14 @@ const CreateProjectModal = ({ show, handleClose }) => {
   const [status, setStatus] = useState()
   const navigate = useNavigate()  
 
-  const {createProject} = useContext(AppContext)
+  const {createProject, setProjects, projects} = useContext(AppContext)
 
   const newProject = {
     "client_name": clientName,
     "job_ids": [],
     "status": status,
-    "collaborators": []
+    "collaborators": [],
+    "owner": localStorage.getItem('email')
 }
 
 const handleClick = async (e)=>{
@@ -24,6 +25,8 @@ const handleClick = async (e)=>{
   console.log(newProject)
   const res = await createProject(newProject)
   if(res) {
+    const newData = [...projects, newProject]
+    setProjects(newData)
     alert("New project created!")
     handleClose()
     navigate('/projects')
