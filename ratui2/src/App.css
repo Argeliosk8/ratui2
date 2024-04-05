@@ -48,6 +48,11 @@
   color: black;
 }
 
+#activeNav {
+  background-color: whitesmoke;
+  color: black;
+}
+
 body {
   font-family: "Inconsolata", monospace;
   font-optical-sizing: auto;

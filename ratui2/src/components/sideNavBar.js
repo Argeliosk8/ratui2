@@ -4,9 +4,17 @@ import Navbar from 'react-bootstrap/Navbar';
 import ratLogoSolo from '../pictures/rat-logo-solo.png'
 import DropdownButtonNav from './dropDownButtonNav.js'
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function SideNavBar() {
   const navigate = useNavigate()
+  const [activeItem, setActiveItem] = useState('tracker')
+
+  const handleClick = (option) => {
+    setActiveItem(option)
+    navigate(`/${option}`)
+  }
+
   return (
     <Navbar id="sideNav" expand="lg" className='h-100 p-0'>
       <Container className='flex-column h-100 w-100 p-0 ms-2 me-2'>
@@ -16,10 +24,10 @@ function SideNavBar() {
                     <img src={ratLogoSolo} class="img-fluid" alt="..."/>
                     </div>
             </div>
-            <Nav.Link id="navLink"className="text-center" onClick={()=>{navigate('/mytracker')}}>My Tracker</Nav.Link>
-            <Nav.Link id="navLink"className="text-center" onClick={()=>{navigate('/projects')}}>Projects</Nav.Link>
-            <Nav.Link id="navLink" className="text-center" href="#">Services</Nav.Link>
-            <Nav.Link id="navLink" className="text-center"  href="#">Contact</Nav.Link>
+            <Nav.Link id={activeItem === 'tracker' ? "activeNav" : "navLink"} className="text-center" onClick={()=>handleClick('tracker')}>Tracker</Nav.Link>
+            <Nav.Link id={activeItem === 'projects' ? "activeNav" : "navLink"} className="text-center"onClick={()=>handleClick('projects')}>Projects</Nav.Link>
+            <Nav.Link id={activeItem === 'templates' ? "activeNav" : "navLink"} className="text-center"onClick={()=>handleClick('templates')}>Templates</Nav.Link>
+            <Nav.Link id={activeItem === 'contact' ? "activeNav" : "navLink"} className="text-center"onClick={()=>handleClick('contact')}>Contact</Nav.Link>
             <Navbar.Brand className="mt-auto me-0 text-center" href="#">
             <DropdownButtonNav></DropdownButtonNav>
             </Navbar.Brand>

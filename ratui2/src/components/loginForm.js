@@ -20,7 +20,7 @@ const LoginForm = () => {
     e.preventDefault()
     const result = await login(username, password)
     if (result) {
-        navigate("/mytracker")
+        navigate("/tracker")
     } else {
         alert("error validating your credentials")
     }
