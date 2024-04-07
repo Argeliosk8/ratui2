@@ -3,6 +3,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import CreateProjectModal from "../modals/createProjectModal";
 import { ProjectCards } from "../components/projectCards";
+import SuccessToast from "../components/successToast";
 
 export const Projects = ()=> {
 
@@ -16,6 +17,7 @@ export const Projects = ()=> {
   <Button  onClick={handleShow}>Create Project</Button>
   <CreateProjectModal show={show} handleClose={handleClose}></CreateProjectModal>
   <ProjectCards></ProjectCards>
+  <SuccessToast></SuccessToast>
 </div>
       
     )

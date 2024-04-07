@@ -10,7 +10,7 @@ const CreateProjectModal = ({ show, handleClose }) => {
   const [status, setStatus] = useState()
   const navigate = useNavigate()  
 
-  const {createProject, setProjects, projects} = useContext(AppContext)
+  const {createProject, setProjects, projects, toggleShowToast} = useContext(AppContext)
 
   const newProject = {
     "client_name": clientName,
@@ -30,6 +30,7 @@ const handleClick = async (e)=>{
     alert("New project created!")
     handleClose()
     navigate('/projects')
+    toggleShowToast()
   } else {
     alert("Error try again")
   }

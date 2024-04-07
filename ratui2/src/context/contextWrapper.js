@@ -12,8 +12,12 @@ export const ContextWrapper = ({children})=> {
     const [projects, setProjects] = useState([]);
     const [token, setToken] = useState(localStorage.getItem('jwt-token'));
     const [jobs, setJobs] = useState([])
+    const [showToast, setShowToast] = useState(false);
+    
     const uri = process.env.REACT_APP_URI
     /*Global Functions*/
+    const toggleShowToast = () => setShowToast(!showToast);
+
     const changeName = (newName)=>{
         if(name === "Argelio Baca"){
             setName(newName)
@@ -162,7 +166,9 @@ export const ContextWrapper = ({children})=> {
             projects, 
             setProjects,
             jobs,
-            setJobs
+            setJobs,
+            showToast,
+            toggleShowToast
             }}>
             {children}
         </AppContext.Provider>
