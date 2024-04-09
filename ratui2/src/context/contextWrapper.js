@@ -107,7 +107,25 @@ export const ContextWrapper = ({children})=> {
             console.log(error)
         }
     }
-
+    const getSingleProject = async(projectid) => {
+        console.log(projectid)
+        const body = {id: projectid}
+        try {
+            const resp = await fetch(`${uri}/project/findone`, {
+                method: 'POST',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+            },
+                body: JSON.stringify(body)
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const createProject = async (newProject) => {
         try {
@@ -168,7 +186,8 @@ export const ContextWrapper = ({children})=> {
             jobs,
             setJobs,
             showToast,
-            toggleShowToast
+            toggleShowToast,
+            getSingleProject
             }}>
             {children}
         </AppContext.Provider>

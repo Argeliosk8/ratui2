@@ -6,6 +6,7 @@ import { Projects } from '../pages/projects.js';
 import { MyTracker } from '../pages/myTracker.js';
 import { Templates } from '../pages/templates.js';
 import { Contact } from '../pages/contact.js';
+import { SingleProject } from '../pages/singleProject.js';
 
  const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,6 +16,7 @@ import { Contact } from '../pages/contact.js';
           </Route>
           <Route  element={<Root />}> 
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:projectid" element={<SingleProject />} />
             <Route path="/tracker" element={<MyTracker />} />
             <Route path="/templates" element={<Templates />} />
             <Route path='/contact' element={<Contact />} />

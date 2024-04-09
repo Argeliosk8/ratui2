@@ -2,7 +2,7 @@ import React from "react";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../context/contextWrapper"
 import Card from 'react-bootstrap/Card';
-
+import { Link } from "react-router-dom";
 
 export const ProjectCards = ()=> {
   const { getProjects, projects, setProjects } = useContext(AppContext)
@@ -32,7 +32,7 @@ export const ProjectCards = ()=> {
           bulk of the card's content.
         </Card.Text>
         <Card.Link href="#">Card Link</Card.Link>
-        <Card.Link href="#">Another Link</Card.Link>
+        <Link to={`/projects/${project._id}`}>Single</Link>
       </Card.Body>
     </Card>
 
