@@ -32,7 +32,7 @@ export const ProjectCards = ()=> {
           bulk of the card's content.
         </Card.Text>
         <Card.Link href="#">Card Link</Card.Link>
-        <Link to={`/projects/${project._id}`}>Single</Link>
+        <Card.Link><Link to={`/projects/${project._id}`}>Single</Link></Card.Link>
       </Card.Body>
     </Card>
 

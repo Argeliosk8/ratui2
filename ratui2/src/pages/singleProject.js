@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
 import { AppContext } from "../context/contextWrapper";
+import ProjectEditForm from "../components/projectEditForm";
 
 export const SingleProject = ()=> {
   const { projectid } = useParams();
@@ -21,7 +22,7 @@ export const SingleProject = ()=> {
 
     return (
 <div className="container w-100 h-100 p-0 scrollablediv">
-  <h1>{`This is the view for a single project currently displaying job wiht id ${projectid} and with the name ${projectData ? projectData.client_name : 'loading...'}`}</h1>
+  { projectData ? <ProjectEditForm projectData={projectData}></ProjectEditForm> : <h3>Loadin...</h3>}
 </div>      
     )
   }
