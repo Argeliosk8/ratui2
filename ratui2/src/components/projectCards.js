@@ -3,6 +3,8 @@ import { useContext, useEffect } from "react";
 import { AppContext } from "../context/contextWrapper"
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
+
 
 export const ProjectCards = ()=> {
   const { getProjects, projects, setProjects } = useContext(AppContext)
@@ -37,7 +39,7 @@ export const ProjectCards = ()=> {
     </Card>
 
       </div>
-    )) : <div> Loading...</div>
+    )) : <Spinner animation="border" />
   }
   </div>
  )

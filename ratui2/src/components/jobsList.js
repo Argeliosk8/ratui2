@@ -2,6 +2,8 @@ import React from "react";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../context/contextWrapper";
 import ActivityTable from "./activityTable";
+import Spinner from 'react-bootstrap/Spinner';
+
 
 export const JobsList = ()=> {
  
@@ -35,7 +37,7 @@ export const JobsList = ()=> {
               </div>
               </div>
           </div>
-        )) : <div>Loading...</div> 
+        )) : <Spinner animation="border" />
   }
   </div>
       

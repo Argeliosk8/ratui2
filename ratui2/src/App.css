@@ -97,7 +97,7 @@ p {
 }
 
 .scrollablediv {
-  width: 200px;
+      width: 200px;
       height: 200px;
       overflow: scroll;
       border: 1px solid #ccc;
