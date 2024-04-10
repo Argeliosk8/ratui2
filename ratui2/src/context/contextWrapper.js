@@ -164,6 +164,23 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
+
+    const updateProject = async(updatedProject, projectId)=>{
+        try {
+            const result = await fetch(`${uri}/project/replaceone/${projectId}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify(updatedProject)
+            })
+            return result
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         
         <AppContext.Provider value={{
@@ -187,7 +204,8 @@ export const ContextWrapper = ({children})=> {
             setJobs,
             showToast,
             toggleShowToast,
-            getSingleProject
+            getSingleProject,
+            updateProject
             }}>
             {children}
         </AppContext.Provider>

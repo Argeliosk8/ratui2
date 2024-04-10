@@ -22,7 +22,7 @@ export const SingleProject = ()=> {
 
     return (
 <div className="container w-100 h-100 p-0 scrollablediv">
-  { projectData ? <ProjectEditForm projectData={projectData}></ProjectEditForm> : <h3>Loadin...</h3>}
+  { projectData ? <ProjectEditForm projectData={projectData} projectId={projectid}></ProjectEditForm> : <h3>Loadin...</h3>}
 </div>      
     )
   }

@@ -24,7 +24,9 @@ const handleClick = async (e)=>{
   e.preventDefault()
   console.log(newProject)
   const res = await createProject(newProject)
+  
   if(res) {
+    newProject._id = res.insertedId
     const newData = [...projects, newProject]
     setProjects(newData)
     alert("New project created!")
@@ -57,7 +59,7 @@ const handleClick = async (e)=>{
             <Form.Select onChange={(e)=>{setStatus(e.target.value)}} >
               <option>Open this select menu</option>
               <option value="Active">Active</option>
-              <option value="Hold">On Hold</option>
+              <option value="Hold">Hold</option>
               <option value="Closed">Closed</option>
             </Form.Select>
             </Form.Group>
