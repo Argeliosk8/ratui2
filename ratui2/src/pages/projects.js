@@ -12,7 +12,7 @@ export const Projects = ()=> {
   const handleShow = () => setShow(true);
 
     return (
-<div className="container w-100 h-100 p-0 scrollablediv">
+<div className="container w-100 h-100 p-0 m-0 scrollablediv">
   <h1>Welcome to my projects page</h1>
   <Button  onClick={handleShow}>Create Project</Button>
   <CreateProjectModal show={show} handleClose={handleClose}></CreateProjectModal>

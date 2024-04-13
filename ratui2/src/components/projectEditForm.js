@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/contextWrapper";
-import Table from 'react-bootstrap/Table';
+import { CollabAccordion } from "./collaboratorsAccordion";
 
 
 const ProjectEditForm = ({projectData, projectId}) => {
@@ -34,8 +34,8 @@ const ProjectEditForm = ({projectData, projectId}) => {
 
 
     return(
-        <div className="container-fluid">
-            <div class="container">
+        <div className="flex-wrap">
+            <div class="flex-wrap-child">
                 <div class="row align-items-start mt-3">
                     <h3>{`Name: ${projectName}`}</h3>
                     <h3>{`Status: ${projectStatus}`}</h3>
@@ -43,7 +43,7 @@ const ProjectEditForm = ({projectData, projectId}) => {
                     <h3>{`Collaborators: ${collaborators}`}</h3>
                 </div>
                 <div class="row align-items-start mt-3">
-                    <div class="col-6">
+                    <div class="container-fluid">
                     <Form className="m-3">
                         <Form.Group className="mb-3" controlId="ControlInput1">
                             <Form.Label>Name</Form.Label>
@@ -79,38 +79,10 @@ const ProjectEditForm = ({projectData, projectId}) => {
                 <Button  onClick={(e)=>{saveChanges(e, updatedProject, projectId)}}>Save</Button>                
             </Form>
                     </div>
-                    <div class="col-6">
-                    <div className="accordion" id="accordionExample">
-                    <div className="accordion-item">
-                    <h2 className="accordion-header" id={"heading1"}>
-                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse1"} aria-expanded="false" aria-controls={"collapse1"}>
-                        Collaborators
-                    </button>
-                    </h2>
-                    <div id={"collapse1"} class="accordion-collapse collapse" aria-labelledby={"heading1"} data-bs-parent="#accordionExample">
-                    <div className="accordion-body">
-                        <Table responsive>
-                            <thead>
-                                <th>#</th>
-                                <th>User</th>
-                            </thead>
-                            <tbody>
-                                {
-                                    collaborators.map((user,i)=>(
-                                        <tr>
-                                            <td>{i + 1}</td>
-                                            <td>{user}</td>
-                                        </tr>
-                                    ))
-                                }
-                            </tbody>
-                        </Table>
-                    </div>
                 </div>
-                    </div>                    
-                </div>
-                    </div>
-                </div>
+            </div>
+            <div class="flex-wrap-child">
+             <CollabAccordion collabs={collaborators}></CollabAccordion>      
             </div>
         </div>
         

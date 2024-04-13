@@ -94,6 +94,13 @@ p {
 .flex-wrap {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+
+.flex-wrap-child {
+  width: 50%;
+  min-width: 300px;
 }
 
 .scrollablediv {
