@@ -1,6 +1,7 @@
 import React, {useState, useContext} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/contextWrapper";
 import { CollabAccordion } from "./collaboratorsAccordion";
@@ -10,7 +11,8 @@ const ProjectEditForm = ({projectData, projectId}) => {
     const [projectName, setProjectName] = useState(projectData.client_name)
     const [projectStatus, setProjectStatus] = useState(projectData.status)
     const [projectOwner, setProjectOwner] = useState(projectData.owner)
-    const[collaborators] = useState(["argelio@gmail.com", "rodrigo@gmail.com", "steph@gmail.com", "alex@gmail.com"])
+    const[collaborators, setCollaborators] = useState(projectData.collaborators)
+    const[newCollab, setNewCollab] = useState()
     const statuses = ["Active", "Hold", "Closed"]
     const {updateProject} = useContext(AppContext)
     const navigate = useNavigate()
@@ -19,7 +21,7 @@ const ProjectEditForm = ({projectData, projectId}) => {
         client_name: projectName,
         job_ids: [],
         status: projectStatus,
-        collaborators: [],
+        collaborators: collaborators,
         owner: projectOwner
     }
 
@@ -32,17 +34,24 @@ const ProjectEditForm = ({projectData, projectId}) => {
         alert("Your project has been updated")
     }
 
+  const addCollab = (e, newCollab) => {
+    e.preventDefault()
+    setCollaborators(prev => [newCollab, ...prev])
+  }
 
     return(
-        <div className="flex-wrap">
-            <div class="flex-wrap-child">
-                <div class="row align-items-start mt-3">
-                    <h3>{`Name: ${projectName}`}</h3>
-                    <h3>{`Status: ${projectStatus}`}</h3>
-                    <h3>{`Owner: ${projectOwner}`}</h3>
-                    <h3>{`Collaborators: ${collaborators}`}</h3>
-                </div>
-                <div class="row align-items-start mt-3">
+<div className="container w-100">
+    <div className="container-fluid">
+        <div class="row align-items-start mt-3">
+            <h3>{`Name: ${projectName}`}</h3>
+            <h3>{`Status: ${projectStatus}`}</h3>
+            <h3>{`Owner: ${projectOwner}`}</h3>
+            <h3>{`Collaborators: ${collaborators}`}</h3>
+        </div>
+    </div>
+<div className="flex-wrap">
+            <div class="flex-wrap-child mt-3">
+                <div class="row align-items-start ">
                     <div class="container-fluid">
                     <Form className="m-3">
                         <Form.Group className="mb-3" controlId="ControlInput1">
@@ -74,17 +83,33 @@ const ProjectEditForm = ({projectData, projectId}) => {
                             />
                         </Form.Group>
                 <Form.Group className="mb-3" controlId="ControlInput5">
-                </Form.Group>
-                <Button  className="me-3" onClick={()=>{navigate('/projects')}}>Go Back</Button>
-                <Button  onClick={(e)=>{saveChanges(e, updatedProject, projectId)}}>Save</Button>                
+                </Form.Group>             
             </Form>
                     </div>
                 </div>
             </div>
-            <div class="flex-wrap-child">
+            <div class="flex-wrap-child mt-3">
+            <InputGroup className="mb-3">
+                <Form.Control
+                placeholder="john@email.com"
+                type="email"
+                aria-label="Recipient's username"
+                aria-describedby="basic-addon2"
+                onChange={(e)=>{setNewCollab(e.target.value)}}
+                />
+                <Button variant="outline-secondary" id="button-addon2" onClick={(e)=>{addCollab(e, newCollab)}}>
+                Add
+                </Button>
+            </InputGroup>
              <CollabAccordion collabs={collaborators}></CollabAccordion>      
             </div>
         </div>
+    <div className="container-fluid mt-3">
+        <Button  className="me-3" onClick={()=>{navigate('/projects')}}>Go Back</Button>
+        <Button  onClick={(e)=>{saveChanges(e, updatedProject, projectId)}}>Save</Button>   
+    </div>
+
+</div>
         
     )
 }

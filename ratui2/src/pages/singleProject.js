@@ -22,7 +22,7 @@ export const SingleProject = ()=> {
   },[])
 
     return (
-<div className="container w-100 h-100 p-0 m-0 scrollablediv">
+<div className="container w-100 h-100 p-0 scrollablediv">
   { projectData ? <ProjectEditForm projectData={projectData} projectId={projectid}></ProjectEditForm> : <Spinner animation="border" />}
 </div>      
     )
