@@ -5,16 +5,19 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/contextWrapper";
 import { CollabAccordion } from "./collaboratorsAccordion";
+import FindUserModal from "../modals/findUserModal";
 
 
 const ProjectEditForm = ({projectData, projectId}) => {
+    const {updateProject} = useContext(AppContext)
+    const [show] = useState(false);
     const [projectName, setProjectName] = useState(projectData.client_name)
     const [projectStatus, setProjectStatus] = useState(projectData.status)
     const [projectOwner, setProjectOwner] = useState(projectData.owner)
     const[collaborators, setCollaborators] = useState(projectData.collaborators)
     const[newCollab, setNewCollab] = useState()
     const statuses = ["Active", "Hold", "Closed"]
-    const {updateProject} = useContext(AppContext)
+    
     const navigate = useNavigate()
 
     const updatedProject = {
@@ -101,7 +104,8 @@ const ProjectEditForm = ({projectData, projectId}) => {
                 Add
                 </Button>
             </InputGroup>
-             <CollabAccordion collabs={collaborators}></CollabAccordion>      
+            <FindUserModal show={show} ></FindUserModal>
+             <CollabAccordion  collabs={collaborators} ></CollabAccordion>      
             </div>
         </div>
     <div className="container-fluid mt-3">

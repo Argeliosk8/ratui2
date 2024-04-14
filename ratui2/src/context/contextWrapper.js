@@ -13,6 +13,8 @@ export const ContextWrapper = ({children})=> {
     const [token, setToken] = useState(localStorage.getItem('jwt-token'));
     const [jobs, setJobs] = useState([])
     const [showToast, setShowToast] = useState(false);
+    const[collaborators, setCollaborators] = useState([])
+
     
     const uri = process.env.REACT_APP_URI
     /*Global Functions*/
@@ -181,6 +183,23 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
+    const getUsers = async() => {
+        try {
+            const resp = await fetch(`${uri}/user/all`, {
+                method: 'GET',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+            }
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         
         <AppContext.Provider value={{
@@ -205,7 +224,10 @@ export const ContextWrapper = ({children})=> {
             showToast,
             toggleShowToast,
             getSingleProject,
-            updateProject
+            updateProject,
+            getUsers,
+            collaborators,
+            setCollaborators
             }}>
             {children}
         </AppContext.Provider>
