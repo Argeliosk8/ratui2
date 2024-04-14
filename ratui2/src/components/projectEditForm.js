@@ -1,7 +1,6 @@
 import React, {useState, useContext} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/contextWrapper";
 import { CollabAccordion } from "./collaboratorsAccordion";
@@ -15,7 +14,6 @@ const ProjectEditForm = ({projectData, projectId}) => {
     const [projectStatus, setProjectStatus] = useState(projectData.status)
     const [projectOwner, setProjectOwner] = useState(projectData.owner)
     const[collaborators, setCollaborators] = useState(projectData.collaborators)
-    const[newCollab, setNewCollab] = useState()
     const statuses = ["Active", "Hold", "Closed"]
     
     const navigate = useNavigate()
@@ -37,10 +35,6 @@ const ProjectEditForm = ({projectData, projectId}) => {
         alert("Your project has been updated")
     }
 
-  const addCollab = (e, newCollab) => {
-    e.preventDefault()
-    setCollaborators(prev => [newCollab, ...prev])
-  }
 
     return(
 <div className="container w-100">
@@ -92,19 +86,7 @@ const ProjectEditForm = ({projectData, projectId}) => {
                 </div>
             </div>
             <div class="flex-wrap-child mt-3">
-            <InputGroup className="mb-3">
-                <Form.Control
-                placeholder="john@email.com"
-                type="email"
-                aria-label="Recipient's username"
-                aria-describedby="basic-addon2"
-                onChange={(e)=>{setNewCollab(e.target.value)}}
-                />
-                <Button variant="outline-secondary" id="button-addon2" onClick={(e)=>{addCollab(e, newCollab)}}>
-                Add
-                </Button>
-            </InputGroup>
-            <FindUserModal show={show} ></FindUserModal>
+            <FindUserModal show={show} setCollaborators={setCollaborators}></FindUserModal>
              <CollabAccordion  collabs={collaborators} ></CollabAccordion>      
             </div>
         </div>

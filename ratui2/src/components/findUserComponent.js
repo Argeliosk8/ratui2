@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import { AppContext } from "../context/contextWrapper";
 import Button from 'react-bootstrap/Button';
 
-export const FindUserComponent = () => {
+export const FindUserComponent = ({setCollaborators}) => {
     const {getUsers} = useContext(AppContext)
     const [inputValue, setInputValue] = useState('');
     const [suggestions, setSuggestions] = useState();
@@ -33,7 +33,7 @@ export const FindUserComponent = () => {
 
  const handleAddClick = (e, suggestion) => {
     e.preventDefault()
-    console.log(suggestion.email)
+    setCollaborators(prev => [suggestion.email, ...prev])
  }
     
 return(

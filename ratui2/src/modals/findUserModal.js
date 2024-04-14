@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FindUserComponent } from '../components/findUserComponent';
 
-const FindUserModal = ({ users }) => {
+const FindUserModal = ({setCollaborators}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -12,7 +12,7 @@ const FindUserModal = ({ users }) => {
     return (
         <div>
           <Button variant="primary" onClick={handleShow}>
-            Find User
+            Add Collaborator
           </Button>
     
           <Modal
@@ -25,7 +25,7 @@ const FindUserModal = ({ users }) => {
               <Modal.Title>Find user</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <FindUserComponent users={users}></FindUserComponent>
+              <FindUserComponent setCollaborators={setCollaborators} ></FindUserComponent>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
