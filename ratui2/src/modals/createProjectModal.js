@@ -40,7 +40,7 @@ const handleClick = async (e)=>{
 
     return(
 <>
-    <Modal id="signUpModal" show={show} onHide={handleClose} centered={true} animation={true} >
+    <Modal id="Modal" show={show} onHide={handleClose} centered={true} animation={true} >
         <Modal.Header closeButton id="custom-bg-color">
           <Modal.Title id="whiteText"> Create Project </Modal.Title>
         </Modal.Header>

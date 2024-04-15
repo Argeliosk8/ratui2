@@ -43,9 +43,9 @@ const LoginForm = () => {
                     <label for="exampleInputPassword1" class="form-label"><p className="fw-lighter">Password</p></label>
                     <input onChange={(e)=>{setPassword(e.target.value)}} type="password" class="form-control" id="exampleInputPassword1"/>
                 </div>
-                <div class="mb-3 form-check ">
-                    <Button onClick={loginClick} type="button" class="btn btn-primary me-3">Login</Button>
-                    <Button  onClick={handleShow}>Sign Up</Button>
+                <div class="mb-3">
+                    <Button variant="light" className="me-3" onClick={loginClick} >Login</Button>
+                    <Button variant="light" onClick={handleShow}>Sign Up</Button>
                 </div>
             </form>
             <SignUpModal show={show} handleClose={handleClose}/>

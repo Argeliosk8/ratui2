@@ -74,15 +74,12 @@ p {
   color: whitesmoke;
 }
 
-#signUpModal * {
+#Modal * {
   background-color: #50727B;
   color: whitesmoke;
 }
 
-#signupModal input {
-  background-color: whitesmoke !important;
-  color: whitesmoke !important;
-}
+
 .navlink {
   color: whitesmoke;
 }

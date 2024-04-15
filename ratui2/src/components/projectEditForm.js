@@ -86,13 +86,13 @@ const ProjectEditForm = ({projectData, projectId}) => {
                 </div>
             </div>
             <div class="flex-wrap-child mt-3">
-            <FindUserModal show={show} setCollaborators={setCollaborators}></FindUserModal>
+            <FindUserModal collaborators={collaborators} show={show} setCollaborators={setCollaborators}></FindUserModal>
              <CollabAccordion  collabs={collaborators} ></CollabAccordion>      
             </div>
         </div>
     <div className="container-fluid mt-3">
-        <Button  className="me-3" onClick={()=>{navigate('/projects')}}>Go Back</Button>
-        <Button  onClick={(e)=>{saveChanges(e, updatedProject, projectId)}}>Save</Button>   
+        <Button  variant="outline-secondary" className="me-3" onClick={()=>{navigate('/projects')}}>Go Back</Button>
+        <Button  variant="outline-secondary" onClick={(e)=>{saveChanges(e, updatedProject, projectId)}}>Save</Button>   
     </div>
 
 </div>

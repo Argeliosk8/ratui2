@@ -3,8 +3,9 @@ import Table from 'react-bootstrap/Table';
 import Form from 'react-bootstrap/Form';
 import { AppContext } from "../context/contextWrapper";
 import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 
-export const FindUserComponent = ({setCollaborators}) => {
+export const FindUserComponent = ({setCollaborators, collaborators}) => {
     const {getUsers} = useContext(AppContext)
     const [inputValue, setInputValue] = useState('');
     const [suggestions, setSuggestions] = useState();
@@ -17,7 +18,7 @@ export const FindUserComponent = ({setCollaborators}) => {
             newData.push({name: `${element.profile.first_name} ${element.profile.last_name}`, email: element.email})
         });
         setUsers(newData)
-        setSuggestions(newData)        
+        //setSuggestions(newData)        
     
     }
 
@@ -27,13 +28,19 @@ export const FindUserComponent = ({setCollaborators}) => {
 
     const handleChange = (e) => {
         const { value } = e.target;
+        setSuggestions(users) 
         setInputValue(value);
         setSuggestions(users.filter(item => item.name.toLowerCase().includes(value.toLowerCase())));
       };
 
  const handleAddClick = (e, suggestion) => {
     e.preventDefault()
-    setCollaborators(prev => [suggestion.email, ...prev])
+    if(collaborators.includes(suggestion.email)) {
+        setCollaborators(collaborators.filter(collaborator => collaborator !== suggestion.email))
+    } else {
+        setCollaborators(prev => [suggestion.email, ...prev])
+    }
+    
  }
     
 return(
@@ -45,25 +52,34 @@ return(
                 onChange={(e)=>{handleChange(e)}}
              />
         </Form.Group>
+        {
+            suggestions ? (
         <Table responsive>
           <thead>
               <th>#</th>
               <th>User</th>
               <th>Eamil</th>
           </thead>
-          <tbody>
-              { suggestions ? 
+          <tbody >
+              { 
                   suggestions.map((suggestion,i)=>(
                       <tr>
                           <td>{i + 1}</td>
                           <td>{suggestion.name}</td>
                           <td >{suggestion.email}</td> 
-                          <td onClick={(e)=>{handleAddClick(e, suggestion)}}><Button>Add</Button></td>                         
+                          <td><Button variant="outline-secondary"  onClick={(e)=>{handleAddClick(e, suggestion)}} > {collaborators.includes(suggestion.email) ? "Remove" : "Add" } </Button></td>                         
                       </tr>
-                  )) : <h3>Loading...</h3>
+                  )) 
               }
           </tbody>
       </Table>
+            ) : (
+                <div className="d-flex justify-content-center">
+                    <Spinner animation="border" role="status"><span className="visually-hidden">Loading...</span></Spinner>
+                </div>
+            )
+        }
+        
     </div>
 )
 }
