@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/contextWrapper";
 import { CollabAccordion } from "./collaboratorsAccordion";
 import FindUserModal from "../modals/findUserModal";
+import CreateJobModal from "../modals/addJobModal";
 
 
 const ProjectEditForm = ({projectData, projectId}) => {
@@ -14,6 +15,7 @@ const ProjectEditForm = ({projectData, projectId}) => {
     const [projectStatus, setProjectStatus] = useState(projectData.status)
     const [projectOwner, setProjectOwner] = useState(projectData.owner)
     const[collaborators, setCollaborators] = useState(projectData.collaborators)
+    const [jobs, setJobs] = useState()
     const statuses = ["Active", "Hold", "Closed"]
     
     const navigate = useNavigate()
@@ -86,9 +88,16 @@ const ProjectEditForm = ({projectData, projectId}) => {
                 </div>
             </div>
             <div class="flex-wrap-child mt-3">
+            <div className="mb-3">
             <FindUserModal collaborators={collaborators} show={show} setCollaborators={setCollaborators}></FindUserModal>
-             <CollabAccordion  collabs={collaborators} ></CollabAccordion>      
+             <CollabAccordion  collabs={collaborators} ></CollabAccordion>
+            </div>                
+            <div>
+            <CreateJobModal collaborators={collaborators} show={show} setCollaborators={setCollaborators}></CreateJobModal>
+             <CollabAccordion  collabs={collaborators} ></CollabAccordion>
+            </div> 
             </div>
+            
         </div>
     <div className="container-fluid mt-3">
         <Button  variant="outline-secondary" className="me-3" onClick={()=>{navigate('/projects')}}>Go Back</Button>
