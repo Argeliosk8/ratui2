@@ -1,38 +1,60 @@
-import React, {useState, useContext} from "react";
-import { AppContext } from "../context/contextWrapper";
+import React, {useState} from "react";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from "react-router-dom";
 
-const CreateJobModal = () => {
+const CreateJobModal = ({id, setJobs, jobs}) => {
   const [jobTitle, setJobTitle] = useState()
   const [req, setReq] = useState()
-  const navigate = useNavigate()  
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const {createProject, setProjects, projects, toggleShowToast} = useContext(AppContext)
-
+  const [token] = useState(localStorage.getItem('jwt-token'));
+  const uri = process.env.REACT_APP_URI
   const newJob = {
-    "job_title": jobTitle,
+    "name": jobTitle,
     "req": req,
 }
+
+  const addJob = async (newJob) => {
+    try {
+        const resp = await fetch(`${uri}/job/addone/${id}`, {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` 
+        },
+            body: JSON.stringify(newJob)
+        })
+        if(!resp.ok) console.log("There was an error creating your job")
+        const data = await resp.json()
+        console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+  //const {createProject, setProjects, projects, toggleShowToast} = useContext(AppContext)
+
+
+
+
 
 const handleClick = async (e)=>{
   e.preventDefault()
   console.log(newJob)
-  const res = await createProject(newJob)
+  const res = await addJob(newJob)
   
   if(res) {
     newJob._id = res.insertedId
-    const newData = [...projects, newJob]
-    setProjects(newData)
-    alert("New project created!")
+    if(jobs) {
+      setJobs(prev => [newJob._id, ...prev])
+    } else {
+      setJobs([newJob._id])
+    }
+    
+    alert("New job created!")
     handleClose()
-    navigate('/projects')
-    toggleShowToast()
   } else {
     alert("Error try again")
   }
@@ -46,6 +68,7 @@ const handleClick = async (e)=>{
     <Modal id="Modal" show={show} onHide={handleClose} centered={true} animation={true} >
         <Modal.Header closeButton id="custom-bg-color">
           <Modal.Title id="whiteText"> Create Job </Modal.Title>
+          <Modal.Title id="whiteText"> {id} </Modal.Title>
         </Modal.Header>
         <Modal.Body id="custom-bg-color" >
         <Form className="m-3">

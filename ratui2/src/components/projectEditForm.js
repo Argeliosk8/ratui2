@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/contextWrapper";
 import { CollabAccordion } from "./collaboratorsAccordion";
+import { JobsAccordion } from "./jobsAccordion";
 import FindUserModal from "../modals/findUserModal";
 import CreateJobModal from "../modals/addJobModal";
 
@@ -15,7 +16,8 @@ const ProjectEditForm = ({projectData, projectId}) => {
     const [projectStatus, setProjectStatus] = useState(projectData.status)
     const [projectOwner, setProjectOwner] = useState(projectData.owner)
     const[collaborators, setCollaborators] = useState(projectData.collaborators)
-    const [jobs, setJobs] = useState()
+    const[jobs, setJobs] = useState(projectData.jobs)
+
     const statuses = ["Active", "Hold", "Closed"]
     
     const navigate = useNavigate()
@@ -93,8 +95,8 @@ const ProjectEditForm = ({projectData, projectId}) => {
              <CollabAccordion  collabs={collaborators} ></CollabAccordion>
             </div>                
             <div>
-            <CreateJobModal collaborators={collaborators} show={show} setCollaborators={setCollaborators}></CreateJobModal>
-             <CollabAccordion  collabs={collaborators} ></CollabAccordion>
+            <CreateJobModal setJobs={setJobs} id={projectId} show={show} jobs={jobs}></CreateJobModal>
+             <JobsAccordion jobs={jobs}></JobsAccordion>
             </div> 
             </div>
             
