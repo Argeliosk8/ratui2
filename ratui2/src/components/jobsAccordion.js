@@ -16,6 +16,8 @@ export const JobsAccordion = ({jobs})=> {
           <thead>
               <th>#</th>
               <th>Job</th>
+              <th>Req</th>
+              <th>ID</th>
           </thead>
         {
             jobs ? (
@@ -24,7 +26,9 @@ export const JobsAccordion = ({jobs})=> {
                     jobs.map((job,i)=>(
                         <tr>
                             <td>{i + 1}</td>
-                            <td>{job}</td>
+                            <td>{job.name}</td>
+                            <td>{job.req}</td>
+                            <td>{job._id}</td>
                         </tr>
                     ))
                 }

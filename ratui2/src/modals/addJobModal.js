@@ -48,9 +48,9 @@ const handleClick = async (e)=>{
   if(res) {
     newJob._id = res.insertedId
     if(jobs) {
-      setJobs(prev => [newJob._id, ...prev])
+      setJobs(prev => [newJob, ...prev])
     } else {
-      setJobs([newJob._id])
+      setJobs([newJob])
     }
     
     alert("New job created!")
