@@ -200,6 +200,24 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
+
+    const getJobsByProject = async(project_id) => {
+        try {
+            const resp = await fetch(`${uri}/job/findbyprojectid/${project_id}`, {
+                method: 'GET',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+            }
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         
         <AppContext.Provider value={{
@@ -227,7 +245,8 @@ export const ContextWrapper = ({children})=> {
             updateProject,
             getUsers,
             collaborators,
-            setCollaborators
+            setCollaborators,
+            getJobsByProject
             }}>
             {children}
         </AppContext.Provider>

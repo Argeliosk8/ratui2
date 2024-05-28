@@ -1,4 +1,4 @@
-import React, {useState, useContext} from "react";
+import React, {useState, useContext, useEffect} from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
@@ -16,11 +16,21 @@ const ProjectEditForm = ({projectData, projectId}) => {
     const [projectStatus, setProjectStatus] = useState(projectData.status)
     const [projectOwner, setProjectOwner] = useState(projectData.owner)
     const[collaborators, setCollaborators] = useState(projectData.collaborators)
-    const[jobs, setJobs] = useState(projectData.jobs)
-
-    const statuses = ["Active", "Hold", "Closed"]
-    
+    const[jobs, setJobs] = useState(null)
+    const statuses = ["Active", "Hold", "Closed"]    
     const navigate = useNavigate()
+
+    const { getJobsByProject } = useContext(AppContext)
+    const fetchJobs = async()=>{
+      const data = await getJobsByProject(projectId) 
+      setJobs(data) 
+    }
+
+    useEffect(()=>{
+        fetchJobs()
+        // eslint-disable-next-line
+      },[])
+
 
     const updatedProject = {
         client_name: projectName,
@@ -90,10 +100,15 @@ const ProjectEditForm = ({projectData, projectId}) => {
                 </div>
             </div>
             <div class="flex-wrap-child mt-3">
-            <div className="mb-3">
+                {
+                    /* 
+                    <div className="mb-3">
             <FindUserModal collaborators={collaborators} show={show} setCollaborators={setCollaborators}></FindUserModal>
              <CollabAccordion  collabs={collaborators} ></CollabAccordion>
-            </div>                
+            </div> 
+                    
+                    */
+                }               
             <div>
             <CreateJobModal setJobs={setJobs} id={projectId} show={show} jobs={jobs}></CreateJobModal>
              <JobsAccordion jobs={jobs}></JobsAccordion>

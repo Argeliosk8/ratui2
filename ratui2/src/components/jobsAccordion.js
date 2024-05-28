@@ -1,7 +1,11 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
+import { Link } from "react-router-dom";
+
 
 export const JobsAccordion = ({jobs})=> { 
+
+
  return (
   <div className="accordion" id="accordionExample">
   <div className="accordion-item">
@@ -17,7 +21,7 @@ export const JobsAccordion = ({jobs})=> {
               <th>#</th>
               <th>Job</th>
               <th>Req</th>
-              <th>ID</th>
+              <th>View</th>
           </thead>
         {
             jobs ? (
@@ -28,7 +32,7 @@ export const JobsAccordion = ({jobs})=> {
                             <td>{i + 1}</td>
                             <td>{job.name}</td>
                             <td>{job.req}</td>
-                            <td>{job._id}</td>
+                            <td><Link to={`/projects/${job._id}`}>View</Link></td>
                         </tr>
                     ))
                 }
