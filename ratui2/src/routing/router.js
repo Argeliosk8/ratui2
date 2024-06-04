@@ -7,6 +7,7 @@ import { MyTracker } from '../pages/myTracker.js';
 import { Templates } from '../pages/templates.js';
 import { Contact } from '../pages/contact.js';
 import { SingleProject } from '../pages/singleProject.js';
+import { JobEditPage } from '../pages/jobEdit.js';
 
  const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ import { SingleProject } from '../pages/singleProject.js';
             <Route path="/tracker" element={<MyTracker />} />
             <Route path="/templates" element={<Templates />} />
             <Route path='/contact' element={<Contact />} />
+            <Route path='/job/edit/:job_id' element={<JobEditPage />} />
           </Route>
     </Route>
   )

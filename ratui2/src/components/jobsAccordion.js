@@ -1,5 +1,6 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
+import JobEditModal from "../modals/jobEditModal";
 import { Link } from "react-router-dom";
 
 
@@ -32,7 +33,7 @@ export const JobsAccordion = ({jobs})=> {
                             <td>{i + 1}</td>
                             <td>{job.name}</td>
                             <td>{job.req}</td>
-                            <td><Link to={`/projects/${job._id}`}>View</Link></td>
+                            <td><Link to={`/job/edit/${job._id}`}>Edit</Link></td>
                         </tr>
                     ))
                 }

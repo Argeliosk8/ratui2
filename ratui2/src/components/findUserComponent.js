@@ -5,7 +5,8 @@ import { AppContext } from "../context/contextWrapper";
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
-export const FindUserComponent = ({setCollaborators, collaborators}) => {
+export const FindUserComponent = () => {
+    const [collaborators, setCollaborators] = useState([])
     const {getUsers} = useContext(AppContext)
     const [inputValue, setInputValue] = useState('');
     const [suggestions, setSuggestions] = useState();
