@@ -1,9 +1,9 @@
 import React from "react";
 import Table from 'react-bootstrap/Table';
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 
-export const JobsAccordion = ({jobs})=> { 
+function UsersAccordion({users}) { 
 
 
  return (
@@ -11,7 +11,7 @@ export const JobsAccordion = ({jobs})=> {
   <div className="accordion-item">
   <h2 className="accordion-header" id={"heading1"}>
   <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse1"} aria-expanded="false" aria-controls={"collapse1"}>
-      Jobs
+      Users
   </button>
   </h2>
   <div id={"collapse1"} class="accordion-collapse collapse" aria-labelledby={"heading1"} data-bs-parent="#accordionExample">
@@ -19,27 +19,24 @@ export const JobsAccordion = ({jobs})=> {
       <Table responsive>
           <thead>
               <th>#</th>
-              <th>Job</th>
-              <th>Req</th>
-              <th>View</th>
+              <th>User</th>
+
           </thead>
         {
-            jobs ? (
+            users ? (
                 <tbody>
                 {
-                    jobs.map((job,i)=>(
+                    users.map((user,i)=>(
                         <tr>
                             <td>{i + 1}</td>
-                            <td>{job.name}</td>
-                            <td>{job.req}</td>
-                            <td><Link to={`/job/edit/${job._id}`}>Edit</Link></td>
+                            <td>{user}</td>
                         </tr>
                     ))
                 }
             </tbody>
             ) : (
                 <div>
-                    <h3>No Jobs Available</h3>
+                    <h3>No users added</h3>
                 </div>
             )
         }
@@ -51,4 +48,5 @@ export const JobsAccordion = ({jobs})=> {
     )
   }
 
+  export default UsersAccordion
 

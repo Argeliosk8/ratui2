@@ -5,12 +5,11 @@ import { AppContext } from "../context/contextWrapper";
 import Button from 'react-bootstrap/Button';
 import Spinner from 'react-bootstrap/Spinner';
 
-export const FindUserComponent = () => {
-    const [collaborators, setCollaborators] = useState([])
+export const FindUserComponent = ({jobUsers, setJobUsers}) => {
     const {getUsers} = useContext(AppContext)
     const [inputValue, setInputValue] = useState('');
     const [suggestions, setSuggestions] = useState();
-    const [users, setUsers] = useState()
+    const [allUsers, setAllUsers] = useState()
 
     const fetchUsers = async () => {
         const data = await getUsers()
@@ -18,28 +17,29 @@ export const FindUserComponent = () => {
         data.forEach(element => {
             newData.push({name: `${element.profile.first_name} ${element.profile.last_name}`, email: element.email})
         });
-        setUsers(newData)
+        setAllUsers(newData)
         //setSuggestions(newData)        
     
     }
 
     useEffect(()=>{
         fetchUsers()
+        // eslint-disable-next-line
     },[])
 
     const handleChange = (e) => {
         const { value } = e.target;
-        setSuggestions(users) 
+        setSuggestions(allUsers) 
         setInputValue(value);
-        setSuggestions(users.filter(item => item.name.toLowerCase().includes(value.toLowerCase())));
+        setSuggestions(allUsers.filter(item => item.name.toLowerCase().includes(inputValue.toLowerCase())));
       };
 
  const handleAddClick = (e, suggestion) => {
     e.preventDefault()
-    if(collaborators.includes(suggestion.email)) {
-        setCollaborators(collaborators.filter(collaborator => collaborator !== suggestion.email))
+    if(jobUsers.includes(suggestion.email)) {
+        setJobUsers(jobUsers.filter(jobUser => jobUser !== suggestion.email))
     } else {
-        setCollaborators(prev => [suggestion.email, ...prev])
+        setJobUsers(prev => [suggestion.email, ...prev])
     }
     
  }
@@ -68,7 +68,7 @@ return(
                           <td>{i + 1}</td>
                           <td>{suggestion.name}</td>
                           <td >{suggestion.email}</td> 
-                          <td><Button variant="outline-secondary"  onClick={(e)=>{handleAddClick(e, suggestion)}} > {collaborators.includes(suggestion.email) ? "Remove" : "Add" } </Button></td>                         
+                          <td><Button variant="outline-secondary"  onClick={(e)=>{handleAddClick(e, suggestion)}} > {jobUsers.includes(suggestion.email) ? "Remove" : "Add" } </Button></td>                         
                       </tr>
                   )) 
               }

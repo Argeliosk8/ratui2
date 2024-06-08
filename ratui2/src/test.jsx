@@ -38,7 +38,7 @@ const getJobsByProject = async(project_id) => {
     }
 }
 
-const job_id = "665f52f5a3b040afea2aeebd"
+//const job_id = "665f52f5a3b040afea2aeebd"
 
 const getJobById = async(job_id) => {
     try {
@@ -57,6 +57,36 @@ const getJobById = async(job_id) => {
     }
 }
 
+const updatedJob = {
+    name:"Software Engineer (Updated)",
+    req:"1001",
+    creator:"argelio@gmail.com",
+    user_id:"657a1445ffa2498a72e993f9",
+    project_id:"66560f4eca24eed91345edcb"
+    }
+
+    const job_id = '66560f5eca24eed91345edcc'
+
+
+    const updateJob = async(job_id, updatedJob) => {
+        try {
+            const resp = await fetch(`http://localhost:80/job/replacebyid/${job_id}`, {
+                method: 'put',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": token
+            },
+            body: JSON.stringify(updatedJob)
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+//updateJob(job_id, updatedJob)
 //getJobsByProject(project_id)
 
-getJobById(job_id)
+//getJobById(job_id)

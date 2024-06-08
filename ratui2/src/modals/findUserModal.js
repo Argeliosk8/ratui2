@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import { FindUserComponent } from '../components/findUserComponent';
 
 
-const FindUserModal = ({setCollaborators, collaborators}) => {
+const FindUserModal = ({users, setUsers}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -13,7 +13,7 @@ const FindUserModal = ({setCollaborators, collaborators}) => {
     return (
         <div >
           <Button className="mb-3" variant="outline-secondary" onClick={handleShow} id="custom-bg-color">
-            Add Collaborator
+            Add User
           </Button>    
           <Modal id="Modal"
             show={show}
@@ -25,7 +25,7 @@ const FindUserModal = ({setCollaborators, collaborators}) => {
               <Modal.Title>Find user</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <FindUserComponent collaborators={collaborators} setCollaborators={setCollaborators} ></FindUserComponent>
+              <FindUserComponent jobUsers={users} setJobUsers={setUsers} ></FindUserComponent>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="outline-secondary" onClick={handleClose}>

@@ -3,9 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/contextWrapper";
-import { CollabAccordion } from "./collaboratorsAccordion";
 import { JobsAccordion } from "./jobsAccordion";
-import FindUserModal from "../modals/findUserModal";
 import CreateJobModal from "../modals/addJobModal";
 
 
@@ -15,7 +13,6 @@ const ProjectEditForm = ({projectData, projectId}) => {
     const [projectName, setProjectName] = useState(projectData.client_name)
     const [projectStatus, setProjectStatus] = useState(projectData.status)
     const [projectOwner, setProjectOwner] = useState(projectData.owner)
-    const[collaborators, setCollaborators] = useState(projectData.collaborators)
     const[jobs, setJobs] = useState(null)
     const statuses = ["Active", "Hold", "Closed"]    
     const navigate = useNavigate()
@@ -36,7 +33,6 @@ const ProjectEditForm = ({projectData, projectId}) => {
         client_name: projectName,
         job_ids: [],
         status: projectStatus,
-        collaborators: collaborators,
         owner: projectOwner
     }
 
@@ -57,7 +53,6 @@ const ProjectEditForm = ({projectData, projectId}) => {
             <h3>{`Name: ${projectName}`}</h3>
             <h3>{`Status: ${projectStatus}`}</h3>
             <h3>{`Owner: ${projectOwner}`}</h3>
-            <h3>{`Collaborators: ${collaborators}`}</h3>
         </div>
     </div>
 <div className="flex-wrap">
