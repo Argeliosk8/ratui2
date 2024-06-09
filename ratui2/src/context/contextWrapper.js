@@ -238,7 +238,7 @@ export const ContextWrapper = ({children})=> {
 
     const updateJob = async(job_id, updatedJob) => {
         try {
-            const resp = await fetch(`http://localhost:80/job/replacebyid/${job_id}`, {
+            const resp = await fetch(`${uri}/job/updateone/${job_id}`, {
                 method: 'put',
                 headers: { 
                     "Content-Type": "application/json",

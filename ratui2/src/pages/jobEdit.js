@@ -51,10 +51,12 @@ export const JobEditPage = ()=> {
     const saveChanges = async (e, job_id, updatedJob)=>{
       e.preventDefault()
       const result = await updateJob(job_id, updatedJob)
-      if(result.ok) {          
-          alert("Your job has been updated")
+      console.log(result)
+      if(!result.ok) {      
+          alert("There was an error with your request")    
+          
       } else {
-        alert("There was an error with your request")
+        alert("Your job has been updated")
       }
       
   }
