@@ -254,6 +254,23 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
+    const getActivityByJobId = async(jobid) => {
+        try {
+            const resp = await fetch(`${uri}/activity/find/${jobid}`, {
+                method: 'GET',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+            }
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         
         <AppContext.Provider value={{
@@ -284,7 +301,8 @@ export const ContextWrapper = ({children})=> {
             setCollaborators,
             getJobsByProject,
             getJobById,
-            updateJob
+            updateJob,
+            getActivityByJobId
             }}>
             {children}
         </AppContext.Provider>

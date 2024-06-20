@@ -20,6 +20,7 @@ const createProject = async (newProject) => {
 }
 
 const project_id = '66560f8dca24eed91345edce'
+const jobid = '6664b0bb2d8a195dfe96ca7a'
 
 const getJobsByProject = async(project_id) => {
     try {
@@ -86,6 +87,24 @@ const updatedJob = {
         }
     }
 
+
+    const getActivityByJobId = async(jobid) => {
+        try {
+            const resp = await fetch(`http://localhost:80/activity/find/${jobid}`, {
+                method: 'GET',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": token
+            }
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+//getActivityByJobId(jobid)
 //updateJob(job_id, updatedJob)
 //getJobsByProject(project_id)
 

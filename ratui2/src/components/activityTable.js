@@ -1,36 +1,83 @@
 import Table from 'react-bootstrap/Table';
+import React, { useState } from "react";
+import { useContext, useEffect } from "react";
+import { AppContext } from "../context/contextWrapper";
 
-function ActivityTable() {
+const ActivityTable = ({jobid}) => {
+  const { getActivityByJobId } = useContext(AppContext)  
+  const [activity, setActivity] = useState(null)
+
+  const fetchActivity = async ()=>{
+    const data = await getActivityByJobId(jobid)
+    setActivity(data)
+    console.log(activity)
+  }
+ 
+  useEffect(()=>{
+    fetchActivity(jobid)
+// eslint-disable-next-line
+  },[])
   return (
     <Table responsive>
       <thead>
+          <tr>
+            <th>#</th>
+              {activity ? activity.map((act, index)=>(
+            <th key={index}>{act.sub_date}</th>  
+        )) : <></>}
+          </tr>
+        </thead>
+        <tbody>
         <tr>
-          <th>#</th>
-          {Array.from({ length: 7 }).map((_, index) => (
-            <th key={index}>Table heading</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          {Array.from({ length: 7 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
-        </tr>
-        <tr>
-          <td>2</td>
-          {Array.from({ length: 7 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
+          <td>Outreach</td>
+              {activity ? activity.map((act, index)=>(
+            <th key={index}>{act.Outreach}</th>  
+        )) : <></>}
         </tr>
         <tr>
-          <td>3</td>
-          {Array.from({ length: 7 }).map((_, index) => (
-            <td key={index}>Table cell {index}</td>
-          ))}
+          <td>RPS</td>
+              {activity ? activity.map((act, index)=>(
+            <th key={index}>{act.RPS}</th>  
+        )) : <></>}
         </tr>
-      </tbody>
+        <tr>
+          <td>Submission</td>
+              {activity ? activity.map((act, index)=>(
+            <th key={index}>{act.Submission}</th>  
+        )) : <></>}
+        </tr>
+        <tr>
+          <td>HM1</td>
+              {activity ? activity.map((act, index)=>(
+            <th key={index}>{act.HM1}</th>  
+        )) : <></>}
+        </tr>
+        <tr>
+          <td>HM2</td>
+              {activity ? activity.map((act, index)=>(
+            <th key={index}>{act.HM2}</th>  
+        )) : <></>}
+        </tr>
+        <tr>
+          <td>Onsite</td>
+              {activity ? activity.map((act, index)=>(
+            <th key={index}>{act.Onsite}</th>  
+        )) : <></>}
+        </tr>
+        <tr>
+          <td>Offer</td>
+              {activity ? activity.map((act, index)=>(
+            <th key={index}>{act.Offer}</th>  
+        )) : <></>}
+        </tr>
+        <tr>
+          <td>Hire</td>
+              {activity ? activity.map((act, index)=>(
+            <th key={index}>{act.Hire}</th>  
+        )) : <></>}
+        </tr>
+        
+        </tbody>
     </Table>
   );
 }
