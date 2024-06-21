@@ -1,8 +1,8 @@
 import React, {useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import ratLogo from '../pictures/rat-logo.png'
-import { AppContext } from "../context/contextWrapper";
-import SignUpModal from "./signUpModal";
+import { AppContext } from "../context/contextWrapper.js";
+import SignUpModal from "../modals/signUpModal.js";
 import Button from 'react-bootstrap/Button';
 
 const LoginForm = () => {
