@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 const AddActModal = () => {
+  const { jobs } = useContext(AppContext)
+  const [job_id, setJob_id] = useState()
   const [outreach, setOutreach] = useState()
   const [date, setDate] = useState()
   const [rps, setRps] = useState()
@@ -29,7 +31,8 @@ const AddActModal = () => {
     HM2: hm2,
     Onsite: onsite,
     Offer: offer,
-    Hire: hire
+    Hire: hire,
+    Job_id: job_id
 }
 
 const handleSubmit = async (e)=>{
@@ -69,8 +72,13 @@ const handleSubmit = async (e)=>{
         </Form.Group>
         <Form.Group as={Col} controlId="formGridPassword">
           <Form.Label>Role</Form.Label>
-          <Form.Select defaultValue="Choose...">
+          <Form.Select onChange={(e)=>{setJob_id(e.target.value)}}  defaultValue="Choose...">
             <option>Choose...</option>
+            {
+              jobs ? jobs.map((job, index) => (
+                <option value={job._id}>{job.name}</option>
+              )) : <></>
+            }
             <option>...</option>
           </Form.Select>
         </Form.Group>
