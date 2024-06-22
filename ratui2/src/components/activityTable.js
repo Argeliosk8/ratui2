@@ -23,7 +23,7 @@ const ActivityTable = ({jobid}) => {
           <tr>
             <th>#</th>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.sub_date}</th>  
+            <th key={index}>{act.date}</th>  
         )) : <></>}
           </tr>
         </thead>
@@ -31,49 +31,49 @@ const ActivityTable = ({jobid}) => {
         <tr>
           <td>Outreach</td>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.Outreach}</th>  
+            <th key={index}>{act.outreach}</th>  
         )) : <></>}
         </tr>
         <tr>
           <td>RPS</td>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.RPS}</th>  
+            <th key={index}>{act.rps}</th>  
         )) : <></>}
         </tr>
         <tr>
           <td>Submission</td>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.Submission}</th>  
+            <th key={index}>{act.submission}</th>  
         )) : <></>}
         </tr>
         <tr>
           <td>HM1</td>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.HM1}</th>  
+            <th key={index}>{act.hm1}</th>  
         )) : <></>}
         </tr>
         <tr>
           <td>HM2</td>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.HM2}</th>  
+            <th key={index}>{act.hm2}</th>  
         )) : <></>}
         </tr>
         <tr>
           <td>Onsite</td>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.Onsite}</th>  
+            <th key={index}>{act.onsite}</th>  
         )) : <></>}
         </tr>
         <tr>
           <td>Offer</td>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.Offer}</th>  
+            <th key={index}>{act.offer}</th>  
         )) : <></>}
         </tr>
         <tr>
           <td>Hire</td>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.Hire}</th>  
+            <th key={index}>{act.hire}</th>  
         )) : <></>}
         </tr>
         

@@ -271,6 +271,24 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
+    const findOneActivity = async(query) => {
+        try {
+            const resp = await fetch(`${uri}/activity/findone`, {
+                method: 'POST',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(query)
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         
         <AppContext.Provider value={{
@@ -302,7 +320,8 @@ export const ContextWrapper = ({children})=> {
             getJobsByProject,
             getJobById,
             updateJob,
-            getActivityByJobId
+            getActivityByJobId,
+            findOneActivity
             }}>
             {children}
         </AppContext.Provider>

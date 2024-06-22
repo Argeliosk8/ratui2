@@ -104,8 +104,32 @@ const updatedJob = {
             console.log(error)
         }
     }
+    const findOneActivity = async(query) => {
+        try {
+            const resp = await fetch(`http://localhost:80/activity/findone`, {
+                method: 'POST',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": token
+            },
+            body: JSON.stringify(query)
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+const query = {
+    job_id: "6664b0bb2d8a195dfe96ca7a",
+    sub_date: "2024-06-22"
+}
+
 //getActivityByJobId(jobid)
 //updateJob(job_id, updatedJob)
 //getJobsByProject(project_id)
 
 //getJobById(job_id)
+
+findOneActivity(query)
