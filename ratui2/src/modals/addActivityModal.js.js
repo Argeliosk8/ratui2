@@ -13,17 +13,18 @@ const AddActModal = ({jobs, fetchJobs}) => {
   const [job_id, setJob_id] = useState()
   const [outreach, setOutreach] = useState()
   const [date, setDate] = useState()
-  const [rps, setRps] = useState()
-  const [sub, setSub] = useState()
-  const [hm1, setHm1] = useState()
-  const [hm2, setHm2] = useState()
-  const [onsite, setOnsite] = useState()
-  const [offer, setOffer] = useState()
-  const [hire, setHire] = useState()
+  const [rps, setRps] = useState(0)
+  const [sub, setSub] = useState(0)
+  const [hm1, setHm1] = useState(0)
+  const [hm2, setHm2] = useState(0)
+  const [onsite, setOnsite] = useState(0)
+  const [offer, setOffer] = useState(0)
+  const [hire, setHire] = useState(0)
   const [show, setShow] = useState(false);
   const [buttonAction, setButtonAction] = useState("Submit")
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [activity, setActivity] = useState({})
 
   const newAct = {
     date: date,
@@ -60,6 +61,7 @@ useEffect(()=>{
   const fetchActivity = async (query) => {
     const currentAct = await findOneActivity(query)
     if(currentAct){
+      setActivity(currentAct)
       setOutreach(currentAct.outreach)
       setRps(currentAct.rps)
       setSub(currentAct.submission)
@@ -101,7 +103,7 @@ useEffect(()=>{
           <Modal.Title id="whiteText"> Add Activity</Modal.Title>
         </Modal.Header>
         <Modal.Body id="custom-bg-color" >
-        <Form>
+    <Form>
       <Row className="mb-4">
         <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Date</Form.Label>
@@ -120,7 +122,24 @@ useEffect(()=>{
           </Form.Select>
         </Form.Group>
       </Row>
-      <Row className="mb-3">
+      {
+        /*
+        activity ? Object.entries(activity).map(([key, value]) => (
+         <Row className="mb-3">
+          <Form.Group as={Row} className="m-0 d-flex align-items-center justify-content-center" controlId="formGridEmail">
+            <Col xs={2} md={2} lg={2}>
+              <Form.Label >{key}</Form.Label>
+            </Col >
+            <Col xs={3} md={3} lg={3}>
+              <Form.Control value={value ? value : 0} onChange={(e)=>{setOutreach(e.target.value)}} type="number" />
+            </Col >                    
+          </Form.Group>
+        </Row>   
+        )) : 
+          <></>
+  */
+      }
+  <Row className="mb-3">
         <Form.Group as={Row} className="m-0 d-flex align-items-center justify-content-center" controlId="formGridEmail">
           <Col xs={2} md={2} lg={2}>
             <Form.Label >Outreach</Form.Label>
@@ -199,7 +218,7 @@ useEffect(()=>{
             <Form.Control  value={hire ? hire : 0} onChange={(e)=>{setHire(e.target.value)}} type="number" placeholder="0" />
           </Col >                    
         </Form.Group>
-      </Row>
+      </Row> 
     </Form>
         </Modal.Body>
         <Modal.Footer id="custom-bg-color" className="">
