@@ -5,9 +5,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { useNavigate } from "react-router-dom";
 
-const AddActModal = () => {
-  const { jobs, findOneActivity } = useContext(AppContext)
+const AddActModal = ({jobs, fetchJobs}) => {
+  const navigate = useNavigate() 
+  const {findOneActivity, submiteNewAct} = useContext(AppContext)
   const [job_id, setJob_id] = useState()
   const [outreach, setOutreach] = useState()
   const [date, setDate] = useState()
@@ -36,13 +38,22 @@ const AddActModal = () => {
     job_id: job_id
 }
 
-const handleSubmit = async (e)=>{
+const handleSubmit = async (e, newAct, job_id)=>{
   e.preventDefault()
-  for(let key in newAct) {
-    console.log(`Key: ${key}, Value: ${newAct[key]}`)
+  if(buttonAction === "Submit") {
+    const result = await submiteNewAct(newAct, job_id)
+    if (result) {
+      await fetchJobs()
+      alert("New Activity Added")
+      navigate(0)
+      handleClose()
+      
+    } 
+  } else {
+    for(let key in newAct) {
+      console.log(`Key: ${key}, Value: ${newAct[key]}`)
+    }
   }
-
-  handleClose()
 }
 
 useEffect(()=>{
@@ -58,6 +69,16 @@ useEffect(()=>{
       setOffer(currentAct.offer)
       setHire(currentAct.hire)
       setButtonAction("Update")
+    } else {
+      setOutreach(0)
+      setRps(0)
+      setSub(0)
+      setHm1(0)
+      setHm2(0)
+      setOnsite(0)
+      setOffer(0)
+      setHire(0)
+      setButtonAction("Submit")
     }
     return currentAct
   }
@@ -182,7 +203,7 @@ useEffect(()=>{
     </Form>
         </Modal.Body>
         <Modal.Footer id="custom-bg-color" className="">
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button variant="primary" onClick={(e)=>{handleSubmit(e, newAct, job_id)}}>
             {buttonAction}
           </Button>
           <Button variant="secondary" onClick={handleClose}>

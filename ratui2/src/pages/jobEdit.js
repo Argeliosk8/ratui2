@@ -77,7 +77,7 @@ export const JobEditPage = ()=> {
       }
     </div>
     <div className="container-fluid mt-3">
-        <Button  variant="outline-secondary" className="me-3" onClick={()=>{navigate(`/projects/`)}}>Go Back</Button>   
+        <Button  variant="outline-secondary" className="me-3" onClick={()=>{navigate(-1)}}>Go Back</Button>   
         <Button  variant="outline-secondary" className="me-3" onClick={(e)=>{saveChanges(e, job_id, updatedJob)}}>Save</Button>  
     </div>
     <div className="container-fluid mt-3">

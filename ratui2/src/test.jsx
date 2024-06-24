@@ -1,5 +1,5 @@
 
-const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTdmMzYzYTc1YmZjZmQ4ZDkzMGM0ZjUiLCJlbWFpbCI6InJvZHJpZ29AZ21haWwuY29tIiwicHdkIjoiJDJiJDEwJEpQci9TZTVkWUpnREh6d3Q2dVpLci5acUZNTkVyNVV0Y0JrRlppLlNvSmI0RDlLbXYwYnNLIiwic3RhdHVzIjoiQWN0aXZlIiwicHJvZmlsZSI6eyJmaXJzdF9uYW1lIjoiUm9kcmlnbyIsImxhc3RfbmFtZSI6IkdhdGljYSIsInJvbGUiOiJNYW5hZ2VyIiwicmVxcyI6W10sInJlcG9ydHMiOltdLCJjYW5kaWRhdGVzIjpbIjY1ODA3ZWNmZWRjZmJjMDY3ZWZhNTk0NiIsIjY1ODA4MzJjNGNkZmNkZDYyZWM3NzQwMCIsIjY1ODA4NzBlYWNiNmM0ODg5M2JhNTVhMiJdfSwiaWF0IjoxNzEyMDk1NDg3fQ.juoGw2PRZoy_Ze7RFp9MGt8RyCRbaZZhdiHXLw0rywM'
+const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTdmMzYzYTc1YmZjZmQ4ZDkzMGM0ZjUiLCJlbWFpbCI6InJvZHJpZ29AZ21haWwuY29tIiwicHdkIjoiJDJiJDEwJEpQci9TZTVkWUpnREh6d3Q2dVpLci5acUZNTkVyNVV0Y0JrRlppLlNvSmI0RDlLbXYwYnNLIiwic3RhdHVzIjoiQWN0aXZlIiwicHJvZmlsZSI6eyJmaXJzdF9uYW1lIjoiUm9kcmlnbyIsImxhc3RfbmFtZSI6IkdhdGljYSIsInJvbGUiOiJNYW5hZ2VyIiwicmVxcyI6W10sInJlcG9ydHMiOltdLCJjYW5kaWRhdGVzIjpbIjY1ODA3ZWNmZWRjZmJjMDY3ZWZhNTk0NiIsIjY1ODA4MzJjNGNkZmNkZDYyZWM3NzQwMCIsIjY1ODA4NzBlYWNiNmM0ODg5M2JhNTVhMiJdfSwiaWF0IjoxNzEyMTY2MDEzfQ.Vqo24yKlJ81ddm5CNFbNAbAuJlLn1dNYCiqry9fxEu0'
 const createProject = async (newProject) => {
     try {
         const resp = await fetch(`http://localhost:80/project/addone`, {
@@ -66,7 +66,7 @@ const updatedJob = {
     project_id:"66560f4eca24eed91345edcb"
     }
 
-    const job_id = '66560f5eca24eed91345edcc'
+    //const job_id = '66560f5eca24eed91345edcc'
 
 
     const updateJob = async(job_id, updatedJob) => {
@@ -126,10 +126,45 @@ const query = {
     sub_date: "2024-06-22"
 }
 
+const newAct = {
+    outreach: 3,
+    rps: 1,
+    submission: 0,
+    hm1: 0,
+    hm2: 1,
+    onsite: 2,
+    offer: 1,
+    hire: 1,
+    date: "2024-06-26"
+}
+
+const job_id = "6664b0bb2d8a195dfe96ca7a"
+
+const submiteNewAct = async (newAct, job_id) => {
+    try {
+        const resp = await fetch(`http://localhost:80/activity/add/${job_id}`, {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": token 
+        },
+            body: JSON.stringify(newAct)
+        })
+        if(!resp.ok) console.log("There was an adding your activity")
+        const data = await resp.json()
+        console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+//submiteNewAct(newAct, job_id)
 //getActivityByJobId(jobid)
 //updateJob(job_id, updatedJob)
 //getJobsByProject(project_id)
 
 //getJobById(job_id)
 
-findOneActivity(query)
+//findOneActivity(query)

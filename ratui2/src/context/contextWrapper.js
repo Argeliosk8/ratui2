@@ -14,7 +14,7 @@ export const ContextWrapper = ({children})=> {
     const [jobs, setJobs] = useState([])
     const [showToast, setShowToast] = useState(false);
     const[collaborators, setCollaborators] = useState([])
-
+    const [activity, setActivity] = useState(null)
     
     const uri = process.env.REACT_APP_URI
     /*Global Functions*/
@@ -289,6 +289,25 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
+    const submiteNewAct = async (newAct, job_id) => {
+        try {
+            const resp = await fetch(`${uri}/activity/add/${job_id}`, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` 
+            },
+                body: JSON.stringify(newAct)
+            })
+            if(!resp.ok) console.log("There was an adding your activity")
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    
     return (
         
         <AppContext.Provider value={{
@@ -310,6 +329,8 @@ export const ContextWrapper = ({children})=> {
             setProjects,
             jobs,
             setJobs,
+            activity,
+            setActivity,
             showToast,
             toggleShowToast,
             getSingleProject,
@@ -321,7 +342,8 @@ export const ContextWrapper = ({children})=> {
             getJobById,
             updateJob,
             getActivityByJobId,
-            findOneActivity
+            findOneActivity,
+            submiteNewAct
             }}>
             {children}
         </AppContext.Provider>

@@ -1,25 +1,9 @@
 import React from "react";
-import { useContext, useEffect } from "react";
-import { AppContext } from "../context/contextWrapper";
 import ActivityTable from "./activityTable";
 import Spinner from 'react-bootstrap/Spinner';
 
 
-export const JobsList = ()=> {
- 
-  const { getJobs, jobs, setJobs } = useContext(AppContext)  
-
-  const fetchJobs = async ()=>{
-    const data = await getJobs()
-    console.log(data)
-    setJobs(data)
-  }
- 
-  useEffect(()=>{
-    fetchJobs()
-// eslint-disable-next-line
-  },[])
-
+export const JobsList = ({jobs})=> {
  
  return (
   <div className="accordion" id="accordionExample">
