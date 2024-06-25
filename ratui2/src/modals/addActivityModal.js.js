@@ -9,7 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 const AddActModal = ({jobs, fetchJobs}) => {
   const navigate = useNavigate() 
-  const {findOneActivity, submiteNewAct} = useContext(AppContext)
+  const {findOneActivity, submiteNewAct, updateActivity} = useContext(AppContext)
+  const [action, setAction] = useState("Add")
   const [job_id, setJob_id] = useState()
   const [outreach, setOutreach] = useState()
   const [date, setDate] = useState()
@@ -24,7 +25,6 @@ const AddActModal = ({jobs, fetchJobs}) => {
   const [buttonAction, setButtonAction] = useState("Submit")
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [activity, setActivity] = useState({})
 
   const newAct = {
     date: date,
@@ -50,18 +50,23 @@ const handleSubmit = async (e, newAct, job_id)=>{
       handleClose()
       
     } 
-  } else {
-    for(let key in newAct) {
-      console.log(`Key: ${key}, Value: ${newAct[key]}`)
+  } else if(buttonAction === "Update") {
+    const result = await updateActivity(job_id, newAct)
+    if (result) {
+      await fetchJobs()
+      alert("Activity Updated")
+      navigate(0)
+      handleClose()
+      
+    } 
     }
   }
-}
+
 
 useEffect(()=>{
   const fetchActivity = async (query) => {
     const currentAct = await findOneActivity(query)
     if(currentAct){
-      setActivity(currentAct)
       setOutreach(currentAct.outreach)
       setRps(currentAct.rps)
       setSub(currentAct.submission)
@@ -70,6 +75,7 @@ useEffect(()=>{
       setOnsite(currentAct.onsite)
       setOffer(currentAct.offer)
       setHire(currentAct.hire)
+      setAction("Update")
       setButtonAction("Update")
     } else {
       setOutreach(0)
@@ -80,6 +86,7 @@ useEffect(()=>{
       setOnsite(0)
       setOffer(0)
       setHire(0)
+      setAction("Add")
       setButtonAction("Submit")
     }
     return currentAct
@@ -100,7 +107,7 @@ useEffect(()=>{
     </Button> 
     <Modal id="Modal" show={show} onHide={handleClose} centered={true} animation={true} >
         <Modal.Header closeButton id="custom-bg-color">
-          <Modal.Title id="whiteText"> Add Activity</Modal.Title>
+          <Modal.Title id="whiteText"> {action} Activity</Modal.Title>
         </Modal.Header>
         <Modal.Body id="custom-bg-color" >
     <Form>

@@ -138,7 +138,7 @@ const newAct = {
     date: "2024-06-26"
 }
 
-const job_id = "6664b0bb2d8a195dfe96ca7a"
+
 
 const submiteNewAct = async (newAct, job_id) => {
     try {
@@ -159,6 +159,43 @@ const submiteNewAct = async (newAct, job_id) => {
     }
 }
 
+const sendPrompt = async ()=>{
+    const result = await fetchOpenAIResponse("tell me the name of the planets")
+}
+
+const updatedActivity = {
+    "outreach": 100,
+    "rps": 100,
+    "submission": 100,
+    "hm1": 100,
+    "hm2": 0,
+    "onsite": 0,
+    "offer": 0,
+    "hire": 1,
+    "date": "2024-06-25"
+}
+
+const job_id = "66746800a3d988da52609488"
+
+const updateActivity = async(job_id, updatedActivity) => {
+    try {
+        const resp = await fetch(`http://localhost:80/activity/updateone/${job_id}`, {
+            method: 'put',
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": token
+        },
+        body: JSON.stringify(updatedActivity)
+        })
+        const data = await resp.json()
+        console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+updateActivity(job_id, updatedActivity)
 
 //submiteNewAct(newAct, job_id)
 //getActivityByJobId(jobid)

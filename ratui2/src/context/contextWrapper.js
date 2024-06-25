@@ -307,6 +307,24 @@ export const ContextWrapper = ({children})=> {
             console.log(error)
         }
     }
+
+    const updateActivity = async(job_id, updatedActivity) => {
+        try {
+            const resp = await fetch(`${uri}/activity/updateone/${job_id}`, {
+                method: 'put',
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` 
+            },
+            body: JSON.stringify(updatedActivity)
+            })
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
     
     return (
         
@@ -343,7 +361,8 @@ export const ContextWrapper = ({children})=> {
             updateJob,
             getActivityByJobId,
             findOneActivity,
-            submiteNewAct
+            submiteNewAct,
+            updateActivity
             }}>
             {children}
         </AppContext.Provider>
