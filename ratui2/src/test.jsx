@@ -194,8 +194,50 @@ const updateActivity = async(job_id, updatedActivity) => {
         console.log(error)
     }
 }
+/* ----------------------------------------------------------- */
+var myHeaders = new Headers();
+myHeaders.append("X-PUBLIC-KEY", "{{recurrente_public_key}}");
+myHeaders.append("X-SECRET-KEY", "{{recurrente_private_key}}");
+myHeaders.append("Content-Type", "application/json");
 
-updateActivity(job_id, updatedActivity)
+const items = [{
+    "name": "One Ripe Banana",
+    "currency": "GTQ",
+    "amount_in_cents": 3000,
+    "image_url": "https://source.unsplash.com/400x400/?banana",
+    "quantity": 1
+},]
+
+
+var raw = JSON.stringify({
+  "items": items,
+  "success_url": "https://www.google.com",
+  "cancel_url": "https://www.amazon.com",
+  "user_id": "us_123456",
+  "metadata": {}
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+const checkOut = async () => {
+    try {
+        const resp = await fetch(`https://app.recurrente.com/api/checkouts`, requestOptions)
+        const data = await resp.json()
+        console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+//checkOut()
+
+//updateActivity(job_id, updatedActivity)
 
 //submiteNewAct(newAct, job_id)
 //getActivityByJobId(jobid)

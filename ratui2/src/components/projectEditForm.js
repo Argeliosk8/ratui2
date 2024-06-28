@@ -105,8 +105,8 @@ const ProjectEditForm = ({projectData, projectId}) => {
                     */
                 }               
             <div>
-            <CreateJobModal setJobs={setJobs} id={projectId} show={show} jobs={jobs}></CreateJobModal>
-             <JobsAccordion jobs={jobs}></JobsAccordion>
+            <CreateJobModal setJobs={setJobs} id={projectId} show={show} jobs={jobs} projectName={projectName}></CreateJobModal>
+             <JobsAccordion jobs={jobs} projectName={projectName}></JobsAccordion>
             </div> 
             </div>
             

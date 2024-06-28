@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner';
+import TopBanner from "../components/topBanner.js"
 
 export const Templates = ()=> {
   const [msg, setMsg] = useState()
@@ -19,7 +20,7 @@ export const Templates = ()=> {
 
     return (
 <div className="container w-100 h-100 p-0 scrollablediv">
-  <h1>Welcome to my templates page</h1>
+  <TopBanner title={"Templates"}></TopBanner>
   <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Col xs={5} md={5} lg={5}>

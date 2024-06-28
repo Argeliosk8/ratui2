@@ -13,6 +13,13 @@
   }
 }
 
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -108,5 +115,23 @@ p {
       padding: 10px;
       border: none;
 }
+
+:root {
+  --primary-color: #004d40; /* Example primary color */
+  --secondary-color: #00796b; /* Example secondary color */
+  --accent-color: #26a69a; /* Example accent color */
+  --text-color: #ffffff; /* White text for contrast */
+}
+
+.top-banner {
+  background: white;
+  color: black;
+  padding: 20px 20px 20px 20px;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
 /* Responsive layout - when the screen is less than 768px wide, make the sidebar and the main content area stack on top of each other */
 

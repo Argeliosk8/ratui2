@@ -25,7 +25,7 @@ function SideNavBar() {
                     </div>
             </div>
             <Nav.Link id={activeItem === 'tracker' ? "activeNav" : "navLink"} className="text-center" onClick={()=>handleClick('tracker')}>Tracker</Nav.Link>
-            <Nav.Link id={activeItem === 'projects' ? "activeNav" : "navLink"} className="text-center"onClick={()=>handleClick('projects')}>Projects</Nav.Link>
+            <Nav.Link id={activeItem === 'projects' ? "activeNav" : "navLink"} className="text-center"onClick={()=>handleClick('projects')}> Projects</Nav.Link>
             <Nav.Link id={activeItem === 'templates' ? "activeNav" : "navLink"} className="text-center"onClick={()=>handleClick('templates')}>Templates</Nav.Link>
             <Nav.Link id={activeItem === 'contact' ? "activeNav" : "navLink"} className="text-center"onClick={()=>handleClick('contact')}>Contact</Nav.Link>
             <Navbar.Brand className="mt-auto me-0 text-center" href="#">

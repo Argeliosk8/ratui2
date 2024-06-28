@@ -11,8 +11,8 @@ const FindUserModal = ({users, setUsers}) => {
     const handleShow = () => setShow(true);
 
     return (
-        <div >
-          <Button className="mb-3" variant="outline-secondary" onClick={handleShow} id="custom-bg-color">
+        <>
+          <Button variant="outline-secondary" onClick={handleShow} id="custom-bg-color">
             Add User
           </Button>    
           <Modal id="Modal"
@@ -33,7 +33,7 @@ const FindUserModal = ({users, setUsers}) => {
               </Button>
             </Modal.Footer>
           </Modal>
-        </div>
+        </>
       );
     }
     

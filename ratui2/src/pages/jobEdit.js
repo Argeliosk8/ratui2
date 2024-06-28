@@ -8,6 +8,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import FindUserModal from "../modals/findUserModal";
 import UsersAccordion from "../components/usersAccordion.js"
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import TopBanner from "../components/topBanner.js"
 
 
 export const JobEditPage = ()=> {
@@ -20,6 +24,7 @@ export const JobEditPage = ()=> {
   const [creator, setCreator] = useState()
   const [userId, setUserId] = useState()
   const [projectId, setProjectId] = useState()
+  const [clientName, setClientName] = useState()
   const navigate = useNavigate()
 
   const fetchJob = async(job_id)=>{
@@ -31,6 +36,7 @@ export const JobEditPage = ()=> {
     setCreator(data.creator)
     setUserId(data.user_id)
     setProjectId(data.project_id)
+    setClientName(data.client_name)
   }
 
   useEffect(()=>{
@@ -63,8 +69,15 @@ export const JobEditPage = ()=> {
 
     return (
 <div className="container w-100 h-100 p-0 m-0 scrollablediv">
-  <h1>Welcome to job edits page id: {job_id}</h1>
-  <div className="container-fluid">
+  <TopBanner title={title ? `${title} (${clientName})` : "..."}></TopBanner>
+  <Row>
+      <Col>
+      <h1>Welcome to job edits page id: {job_id}</h1>
+      </Col>
+  </Row>
+  <Row>
+    <Col>
+    <div className="container-fluid">
       {
         job ? (
           <div class="row align-items-start mt-3">
@@ -76,14 +89,28 @@ export const JobEditPage = ()=> {
         ) : <>Loading</>
       }
     </div>
-    <div className="container-fluid mt-3">
-        <Button  variant="outline-secondary" className="me-3" onClick={()=>{navigate(-1)}}>Go Back</Button>   
-        <Button  variant="outline-secondary" className="me-3" onClick={(e)=>{saveChanges(e, job_id, updatedJob)}}>Save</Button>  
+    </Col>
+  </Row>
+  <Row>
+      <Col>
+      <div className="container-fluid mt-3 mb-3">
+        <ButtonGroup>
+          <Button  variant="outline-secondary"  onClick={()=>{navigate(-1)}}>Go Back</Button>   
+          <FindUserModal users={users} setUsers={setUsers}/>
+        </ButtonGroup>
     </div>
-    <div className="container-fluid mt-3">
-        <FindUserModal users={users} setUsers={setUsers}/>
-    </div>
+      </Col>
+  </Row>   
+  <Row>
+    <Col md="auto">
     <UsersAccordion users={users}/>
+    </Col>
+  </Row>    
+  <Row className="mt-3">
+    <Col>
+    <Button  variant="outline-secondary"  onClick={(e)=>{saveChanges(e, job_id, updatedJob)}}>Save</Button>  
+    </Col>
+  </Row>
 </div>
       
     )

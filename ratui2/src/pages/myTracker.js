@@ -3,6 +3,9 @@ import { useContext, useEffect } from "react";
 import { JobsList } from "../components/jobsList";
 import AddActModal from "../modals/addActivityModal.js"
 import { AppContext } from "../context/contextWrapper";
+import TopBanner from "../components/topBanner.js"
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export const MyTracker = ()=> {
   const [jobs, setJobs] = useState()
@@ -20,9 +23,21 @@ export const MyTracker = ()=> {
 
     return (
 <div className="container w-100 h-100 p-0 scrollablediv">
-  <h1>Welcome to my Tracker</h1>
-  <AddActModal jobs={jobs} fetchJobs={fetchJobs} setJobs={setJobs}></AddActModal>
-  <JobsList jobs={jobs} ></JobsList>
+  <Row>
+    <Col >
+      <TopBanner title={"My Tracker"}></TopBanner>
+    </Col>
+  </Row>
+  <Row>
+    <Col xs={8} md={8} lg={8}>
+      <AddActModal jobs={jobs} fetchJobs={fetchJobs} setJobs={setJobs}></AddActModal>
+    </Col>
+  </Row>
+  <Row>
+    <Col xs={8} md={8} lg={8}>
+      <JobsList jobs={jobs} ></JobsList>
+    </Col>
+  </Row>
 </div>
       
     )

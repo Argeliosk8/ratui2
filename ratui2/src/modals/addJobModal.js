@@ -4,7 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 
-const CreateJobModal = ({id, setJobs, jobs}) => {
+const CreateJobModal = ({id, setJobs, jobs, projectName}) => {
+  const [client_name] = useState(projectName)
   const [jobTitle, setJobTitle] = useState()
   const [req, setReq] = useState()
   const [show, setShow] = useState(false);
@@ -15,6 +16,7 @@ const CreateJobModal = ({id, setJobs, jobs}) => {
   const newJob = {
     "name": jobTitle,
     "req": req,
+    "client_name": client_name,
     "users": []
 }
 

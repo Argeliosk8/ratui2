@@ -4,6 +4,7 @@ import Button from "react-bootstrap/esm/Button";
 import CreateProjectModal from "../modals/createProjectModal";
 import { ProjectCards } from "../components/projectCards";
 import SuccessToast from "../components/successToast";
+import TopBanner from "../components/topBanner.js"
 
 export const Projects = ()=> {
 
@@ -13,7 +14,7 @@ export const Projects = ()=> {
 
     return (
 <div className="container w-100 h-100 p-0 m-0 scrollablediv">
-  <h1>Welcome to my projects page</h1>
+  <TopBanner title={"Projects"}></TopBanner>
   <Button  variant="outline-secondary"  onClick={handleShow}>Create Project</Button>
   <CreateProjectModal show={show} handleClose={handleClose}></CreateProjectModal>
   <ProjectCards></ProjectCards>
