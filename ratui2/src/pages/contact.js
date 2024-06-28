@@ -1,6 +1,5 @@
 import React from "react";
 import TopBanner from "../components/topBanner.js"
-
 export const Contact = ()=> {
 
 

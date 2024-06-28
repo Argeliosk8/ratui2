@@ -51,7 +51,8 @@ export const JobEditPage = ()=> {
       users: users,
       creator: creator,
       user_id: userId,
-      project_id: projectId
+      project_id: projectId,
+      client_name: clientName
   }
 
     const saveChanges = async (e, job_id, updatedJob)=>{

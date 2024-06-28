@@ -12,7 +12,7 @@ export const JobsList = ({jobs})=> {
           <div className="accordion-item" id={index}>
               <h2 className="accordion-header" id={"heading" + index}>
               <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse" + index} aria-expanded="false" aria-controls={"collapse" + index}>
-                  {job.name}
+                  {`${job.name} (${job.client_name})`}
                   {console.log(job._id)}
               </button>
               </h2>

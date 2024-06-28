@@ -28,14 +28,14 @@ const AddActModal = ({jobs, fetchJobs}) => {
 
   const newAct = {
     date: date,
-    outreach: outreach,
-    rps: rps,
-    submission: sub,
-    hm1: hm1,
-    hm2: hm2,
-    onsite: onsite,
-    offer: offer,
-    hire: hire,
+    outreach: parseInt(outreach),
+    rps: parseInt(rps),
+    submission: parseInt(sub),
+    hm1: parseInt(hm1),
+    hm2: parseInt(hm2),
+    onsite: parseInt(onsite),
+    offer: parseInt(offer),
+    hire: parseInt(hire),
     job_id: job_id
 }
 
