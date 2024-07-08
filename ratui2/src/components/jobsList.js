@@ -3,8 +3,7 @@ import ActivityTable from "./activityTable";
 import Spinner from 'react-bootstrap/Spinner';
 
 
-export const JobsList = ({jobs})=> {
- 
+export const JobsList = ({jobs, days})=> {
  return (
   <div className="accordion" id="accordionExample">
   {
@@ -18,7 +17,7 @@ export const JobsList = ({jobs})=> {
               </h2>
               <div id={"collapse" + index} class="accordion-collapse collapse" aria-labelledby={"heading" + index} data-bs-parent="#accordionExample">
               <div className="accordion-body">
-                  <ActivityTable jobid={job._id}></ActivityTable>
+                  <ActivityTable jobs={jobs} jobid={job._id} days={days}></ActivityTable>
               </div>
               </div>
           </div>

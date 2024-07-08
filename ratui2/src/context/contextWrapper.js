@@ -254,14 +254,16 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
-    const getActivityByJobId = async(jobid) => {
+    const getActivityByJobId = async(jobid, days) => {
+        console.log(days)
         try {
             const resp = await fetch(`${uri}/activity/find/${jobid}`, {
-                method: 'GET',
+                method: 'POST',
                 headers: { 
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
-            }
+            },
+            body: JSON.stringify({days: days})
             })
             const data = await resp.json()
             console.log(data)
@@ -308,9 +310,9 @@ export const ContextWrapper = ({children})=> {
         }
     }
 
-    const updateActivity = async(job_id, updatedActivity) => {
+    const updateActivity = async(actId, updatedActivity) => {
         try {
-            const resp = await fetch(`${uri}/activity/updateone/${job_id}`, {
+            const resp = await fetch(`${uri}/activity/updateone/${actId}`, {
                 method: 'put',
                 headers: { 
                     "Content-Type": "application/json",

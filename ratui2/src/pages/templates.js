@@ -4,8 +4,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner';
-import TopBanner from "../components/topBanner.js"
 import FullScreenModal from "../modals/fullScreenModal.js"
+import TopNavBar from "../components/topNavBar.js"
 
 
 export const Templates = ()=> {
@@ -43,7 +43,7 @@ export const Templates = ()=> {
 
     return (
 <div className="container w-100 h-100 p-0 scrollablediv">
-  <TopBanner title={"Templates"}></TopBanner>
+  <TopNavBar title={"Templates"}></TopNavBar>
   <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Col xs={10} md={10} lg={10}>

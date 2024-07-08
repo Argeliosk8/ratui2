@@ -5,11 +5,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { useNavigate } from "react-router-dom";
 
 const AddActModal = ({jobs, fetchJobs}) => {
-  const navigate = useNavigate() 
+
   const {findOneActivity, submiteNewAct, updateActivity} = useContext(AppContext)
+  const [actId, setActId] = useState()
   const [action, setAction] = useState("Add")
   const [job_id, setJob_id] = useState()
   const [outreach, setOutreach] = useState()
@@ -46,16 +46,14 @@ const handleSubmit = async (e, newAct, job_id)=>{
     if (result) {
       await fetchJobs()
       alert("New Activity Added")
-      navigate(0)
       handleClose()
       
     } 
   } else if(buttonAction === "Update") {
-    const result = await updateActivity(job_id, newAct)
+    const result = await updateActivity(actId, newAct)
     if (result) {
       await fetchJobs()
       alert("Activity Updated")
-      navigate(0)
       handleClose()
       
     } 
@@ -67,6 +65,7 @@ useEffect(()=>{
   const fetchActivity = async (query) => {
     const currentAct = await findOneActivity(query)
     if(currentAct){
+      setActId(currentAct._id)
       setOutreach(currentAct.outreach)
       setRps(currentAct.rps)
       setSub(currentAct.submission)

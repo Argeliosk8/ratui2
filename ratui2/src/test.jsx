@@ -235,6 +235,9 @@ const checkOut = async () => {
     }
 }
 
+
+
+
 //checkOut()
 
 //updateActivity(job_id, updatedActivity)

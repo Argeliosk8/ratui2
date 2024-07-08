@@ -1,11 +1,11 @@
 import React from "react";
-import TopBanner from "../components/topBanner.js"
+import TopNavBar from "../components/topNavBar.js"
 export const Contact = ()=> {
 
 
     return (
 <div className="container w-100 h-100 p-0 scrollablediv">
-  <TopBanner title={"Contact"}></TopBanner>
+  <TopNavBar title={"Contact"}></TopNavBar>
   <div className="container-fluid">
           <div class="row align-items-start mt-3">
           <h3>{`Developed by: Argelio Baca `}</h3>

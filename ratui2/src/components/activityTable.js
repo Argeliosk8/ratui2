@@ -2,28 +2,29 @@ import Table from 'react-bootstrap/Table';
 import React, { useState } from "react";
 import { useContext, useEffect } from "react";
 import { AppContext } from "../context/contextWrapper";
+import { formatDate } from "../Utils/utils.js"
 
-const ActivityTable = ({jobid}) => {
+const ActivityTable = ({jobid, days, jobs}) => {
   const { getActivityByJobId } = useContext(AppContext)  
   const [activity, setActivity] = useState(null)
-
-  const fetchActivity = async ()=>{
-    const data = await getActivityByJobId(jobid)
+  const fetchActivity = async (jobid, days)=>{
+    const data = await getActivityByJobId(jobid, days)
     setActivity(data)
     console.log(activity)
   }
  
   useEffect(()=>{
-    fetchActivity(jobid)
+    fetchActivity(jobid, days)
 // eslint-disable-next-line
-  },[])
+  },[days, jobs])
+  
   return (
     <Table responsive>
       <thead>
           <tr>
             <th>#</th>
               {activity ? activity.map((act, index)=>(
-            <th key={index}>{act.date}</th>  
+            <th key={index}>{formatDate(act.date)}</th>  
         )) : <></>}
           </tr>
         </thead>
