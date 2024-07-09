@@ -1,5 +1,4 @@
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY1ZWMzZTk3NTE1ZmM1MTM0NjQzM2QiLCJlbWFpbCI6ImFyZ2VsaW8uYmFjYUBnbWFpbC5jb20iLCJwd2QiOiIkMmIkMTAkVDdSOXhHOHE4R0RBejVwZEY5bDdSdVYyRE9Xd0JwOWtsamRibjNYU1ZYSk8wR1lxUEJadi4iLCJzdGF0dXMiOiJBY3RpdmUiLCJwcm9maWxlIjp7ImZpcnN0X25hbWUiOiJBcmdlbGlvIiwibGFzdF9uYW1lIjoiQmFjYSIsInJvbGUiOiJNYW5hZ2VyIiwicmVxcyI6W10sInJlcG9ydHMiOltdfSwiY2FuZGlkYXRlcyI6W10sImlhdCI6MTcyMDU0MTU3OX0.CjodCHThQhvxRxtZWjmJVATLnAD30B5C25Fl0WLX4Dw"
 const createProject = async (newProject) => {
     try {
         const resp = await fetch(`http://localhost:80/project/addone`, {
