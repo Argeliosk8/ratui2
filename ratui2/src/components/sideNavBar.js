@@ -19,7 +19,7 @@ function SideNavBar() {
     <Navbar id="sideNav" expand="lg" className='h-100 p-0'>
       <Container className='flex-column h-100 w-100 p-0 ms-2 me-2'>
         <Nav className="flex-column h-100 w-100 justify-content-center">
-            <div className="mb-auto me-0 ms-1 mt-3 d-flex justify-content-center" href="#">
+            <div className="mb-5 me-0 ms-1 mt-3 d-flex justify-content-center" href="#">
             <div className="w-50">
                     <img src={ratLogoSolo} class="img-fluid" alt="..."/>
                     </div>

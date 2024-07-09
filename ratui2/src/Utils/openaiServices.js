@@ -6,13 +6,10 @@ const openai = new OpenAI({
   });
 
 
-  export const fetchOpenAi = async (prompt)=>{
+  export const fetchOpenAi = async (systemPrompt, userPrompt)=>{
     const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
-        messages: [{
-          role: "user",
-          content: prompt
-        }],
+        messages: [systemPrompt, userPrompt],
       });
 
       console.log(response.choices[0].message.content)

@@ -1,5 +1,5 @@
 
-const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTdmMzYzYTc1YmZjZmQ4ZDkzMGM0ZjUiLCJlbWFpbCI6InJvZHJpZ29AZ21haWwuY29tIiwicHdkIjoiJDJiJDEwJEpQci9TZTVkWUpnREh6d3Q2dVpLci5acUZNTkVyNVV0Y0JrRlppLlNvSmI0RDlLbXYwYnNLIiwic3RhdHVzIjoiQWN0aXZlIiwicHJvZmlsZSI6eyJmaXJzdF9uYW1lIjoiUm9kcmlnbyIsImxhc3RfbmFtZSI6IkdhdGljYSIsInJvbGUiOiJNYW5hZ2VyIiwicmVxcyI6W10sInJlcG9ydHMiOltdLCJjYW5kaWRhdGVzIjpbIjY1ODA3ZWNmZWRjZmJjMDY3ZWZhNTk0NiIsIjY1ODA4MzJjNGNkZmNkZDYyZWM3NzQwMCIsIjY1ODA4NzBlYWNiNmM0ODg5M2JhNTVhMiJdfSwiaWF0IjoxNzEyMTY2MDEzfQ.Vqo24yKlJ81ddm5CNFbNAbAuJlLn1dNYCiqry9fxEu0'
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY1ZWMzZTk3NTE1ZmM1MTM0NjQzM2QiLCJlbWFpbCI6ImFyZ2VsaW8uYmFjYUBnbWFpbC5jb20iLCJwd2QiOiIkMmIkMTAkVDdSOXhHOHE4R0RBejVwZEY5bDdSdVYyRE9Xd0JwOWtsamRibjNYU1ZYSk8wR1lxUEJadi4iLCJzdGF0dXMiOiJBY3RpdmUiLCJwcm9maWxlIjp7ImZpcnN0X25hbWUiOiJBcmdlbGlvIiwibGFzdF9uYW1lIjoiQmFjYSIsInJvbGUiOiJNYW5hZ2VyIiwicmVxcyI6W10sInJlcG9ydHMiOltdfSwiY2FuZGlkYXRlcyI6W10sImlhdCI6MTcyMDU0MTU3OX0.CjodCHThQhvxRxtZWjmJVATLnAD30B5C25Fl0WLX4Dw"
 const createProject = async (newProject) => {
     try {
         const resp = await fetch(`http://localhost:80/project/addone`, {
@@ -235,6 +235,24 @@ const checkOut = async () => {
     }
 }
 
+async function getTemplatesByUser() {
+    try {
+        const resp = await fetch(`http://localhost:80/templates/findall/`, {
+            method: 'POST',
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+        }
+        })
+        const data = await resp.json()
+        console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+getTemplatesByUser()
 
 
 
