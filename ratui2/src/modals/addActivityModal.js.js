@@ -10,7 +10,7 @@ const AddActModal = ({jobs, fetchJobs}) => {
 
   const {findOneActivity, submiteNewAct, updateActivity} = useContext(AppContext)
   const [actId, setActId] = useState()
-  const [action, setAction] = useState("Add")
+  //const [action, setAction] = useState("Add")
   const [job_id, setJob_id] = useState()
   const [outreach, setOutreach] = useState()
   const [date, setDate] = useState()
@@ -22,8 +22,20 @@ const AddActModal = ({jobs, fetchJobs}) => {
   const [offer, setOffer] = useState(0)
   const [hire, setHire] = useState(0)
   const [show, setShow] = useState(false);
-  const [buttonAction, setButtonAction] = useState("Submit")
-  const handleClose = () => setShow(false);
+  const [buttonAction, setButtonAction] = useState()
+  const handleClose = () => {
+    setShow(false);
+    setOutreach(0)
+    setRps(0)
+    setSub(0)
+    setHm1(0)
+    setHm2(0)
+    setOnsite(0)
+    setOffer(0)
+    setHire(0)
+    setButtonAction()
+    setJob_id()
+  } 
   const handleShow = () => setShow(true);
 
   const newAct = {
@@ -42,26 +54,24 @@ const AddActModal = ({jobs, fetchJobs}) => {
 const handleSubmit = async (e, newAct, job_id)=>{
   e.preventDefault()
   if(buttonAction === "Submit") {
+    setButtonAction("Submitting...")
     const result = await submiteNewAct(newAct, job_id)
     if (result) {
       await fetchJobs()
-      alert("New Activity Added")
       handleClose()
       
     } 
   } else if(buttonAction === "Update") {
+    setButtonAction("Updating...")
+    console.log(actId)
     const result = await updateActivity(actId, newAct)
     if (result) {
       await fetchJobs()
-      alert("Activity Updated")
       handleClose()
       
     } 
     }
   }
-
-
-useEffect(()=>{
   const fetchActivity = async (query) => {
     const currentAct = await findOneActivity(query)
     if(currentAct){
@@ -74,8 +84,8 @@ useEffect(()=>{
       setOnsite(currentAct.onsite)
       setOffer(currentAct.offer)
       setHire(currentAct.hire)
-      setAction("Update")
       setButtonAction("Update")
+      
     } else {
       setOutreach(0)
       setRps(0)
@@ -85,17 +95,20 @@ useEffect(()=>{
       setOnsite(0)
       setOffer(0)
       setHire(0)
-      setAction("Add")
       setButtonAction("Submit")
     }
     return currentAct
   }
-  if(date && job_id){
+  
+useEffect(()=>{
+async function fetching() {
+  if (date && job_id){
     console.log(`Date Selected: ${date} job_id: ${job_id}`)
     const query = {job_id: job_id, date: date}
-    const currentAct = fetchActivity(query)
-    console.log(currentAct)
+    await fetchActivity(query)
   }
+}
+fetching()
   // eslint-disable-next-line
 },[date, job_id])
 
@@ -106,7 +119,7 @@ useEffect(()=>{
     </Button> 
     <Modal id="Modal" show={show} onHide={handleClose} centered={true} animation={true} >
         <Modal.Header closeButton id="custom-bg-color">
-          <Modal.Title id="whiteText"> {action} Activity</Modal.Title>
+          <Modal.Title id="whiteText"> {buttonAction} Activity</Modal.Title>
         </Modal.Header>
         <Modal.Body id="custom-bg-color" >
     <Form>
