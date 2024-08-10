@@ -261,7 +261,7 @@ let newTemplate =   {
     reason: 'test',
     website: 'test',
   }
-  let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY1ZWMzZTk3NTE1ZmM1MTM0NjQzM2QiLCJlbWFpbCI6ImFyZ2VsaW8uYmFjYUBnbWFpbC5jb20iLCJwd2QiOiIkMmIkMTAkVDdSOXhHOHE4R0RBejVwZEY5bDdSdVYyRE9Xd0JwOWtsamRibjNYU1ZYSk8wR1lxUEJadi4iLCJzdGF0dXMiOiJBY3RpdmUiLCJwcm9maWxlIjp7ImZpcnN0X25hbWUiOiJBcmdlbGlvIiwibGFzdF9uYW1lIjoiQmFjYSIsInJvbGUiOiJNYW5hZ2VyIiwicmVxcyI6W10sInJlcG9ydHMiOltdfSwiY2FuZGlkYXRlcyI6W10sImlhdCI6MTcyMzMxMTU5Mn0.jXxHXoZxVa0kX86_8TtnllRBGMqcOi7-dPH7MZ7scfI"
+  let token = "Bearer"
 
   const saveNewTemplate = async (newTemplate) => {
     try {
