@@ -1,19 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import { fetchOpenAi } from "../Utils/openaiServices.js"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
 import Spinner from 'react-bootstrap/Spinner';
-import FullScreenModal from "../modals/fullScreenModal.js"
+import ShowEmailTemplateModal from "../modals/showEmailTemplateModal.js"
 import TopNavBar from "../components/topNavBar.js"
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { TemplatesAccordion } from "../components/templatesAccordion.js";
-import { AppContext } from "../context/contextWrapper";
-import ReactMarkdown from 'react-markdown';
-
+import {TemplatesAccordion} from "../components/templatesAccordion.js"
 
 export const Templates = ()=> {
-  const { getTemplatesByUser } = useContext(AppContext)
   const [show, setShow] = useState(false)
   const [msg, setMsg] = useState()
   const [jobTitle, setJobTitle] = useState()
@@ -22,7 +18,7 @@ export const Templates = ()=> {
   const [decision, setDesicion] = useState()
   const [adInfo, setAdInfo] = useState()
   const [loading, setLoading] = useState(false)
-  const [templates, setTemplates] = useState()
+  const [saved, setSaved] = useState(false)
 
   let systemPrompt = {
     role: "system",
@@ -43,13 +39,21 @@ export const Templates = ()=> {
       setDesicion("")
       setAdInfo("")
     }
+let promptInfo = {
+  jobTitle: jobTitle,
+  website: website,
+  method: comType,
+  reason: decision,
+  moreinfo: adInfo,
+  msg: msg
 
+}
     const handleClick = async () => {
       setLoading(true)
       if(jobTitle && website && comType && decision){
         try {
           setLoading(true)
-          const result  = await fetchOpenAi(systemPrompt, userPrompt)
+          const result  = await fetchOpenAi(systemPrompt, userPrompt);
             setMsg(`${result}`)
             setShow(true)
             setLoading(false)     
@@ -65,22 +69,10 @@ export const Templates = ()=> {
 
     }
 
-    const fetchTemplates = async ()=>{
-      const data = await getTemplatesByUser()
-      setTemplates(data)
-      console.log(templates)
-    }
-
-    useEffect(()=>{
-      fetchTemplates()
-      // eslint-disable-next-line
-    },[])
-
     return (
 <div className="container w-100 h-100 p-0 scrollablediv">
   <TopNavBar title={"Templates"}></TopNavBar>
-<div className="flex-wrap">
-  <div className="flex-wrap-child mt-3">
+  <div className="container-fluid">
   <Form>
       <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
         <Col xs={10} md={10} lg={10}>
@@ -115,9 +107,9 @@ export const Templates = ()=> {
         >
           <Form.Select value={decision} onChange={(e)=>setDesicion(e.target.value)} aria-label="Floating label select example">
             <option value="">Select Decision</option>
-            <option value="Not move forward with their application">Rejected</option>
-            <option value="Move forward to the next step">Moving Forward</option>
-            <option value="Make an offer">Offer</option>
+            <option value="Rejection">Rejected</option>
+            <option value="Move forward">Moving Forward</option>
+            <option value="Offer">Offer</option>
           </Form.Select>
         </FloatingLabel>
         </Col>
@@ -131,24 +123,20 @@ export const Templates = ()=> {
         </Col>
       </Form.Group>
       <Button variant="outline-secondary" onClick={handleClick} className="me-2">
-            Submit
+            {loading ? "Processing..." : "Submit"}
       </Button> 
       <Button variant="outline-secondary" onClick={handleClear}>
             Clear
       </Button>
-      <FullScreenModal show={show} setShow={setShow} text={msg}></FullScreenModal>
+      <ShowEmailTemplateModal saved={saved} setSaved={setSaved} show={show} setShow={setShow} promptInfo={promptInfo}></ShowEmailTemplateModal>
     </Form>
   </div>
-  <div className="flex-wrap-child mt-3">
-      <TemplatesAccordion templates={templates}> </TemplatesAccordion>
+  <div className="container-fluid mt-3">
+    <Col Col xs={10} md={10} lg={10}>
+      <TemplatesAccordion saved={saved}></TemplatesAccordion>
+    </Col>
   </div>
-</div>
     <br></br>
-  <div>{msg ? <div>
-    <ReactMarkdown>{msg}</ReactMarkdown>
-    <h2>Thanks,</h2>
-    <h2>Argelio Baca</h2>
-  </div> : <></>}</div>
   {
     loading === true ? (
       <Spinner className="mt-5"animation="border" role="status">

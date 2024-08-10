@@ -240,7 +240,7 @@ async function getTemplatesByUser() {
             method: 'POST',
             headers: { 
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
+                "Authorization": token
         }
         })
         const data = await resp.json()
@@ -251,19 +251,51 @@ async function getTemplatesByUser() {
     }
 }
 
-getTemplatesByUser()
+let newTemplate =   {
+    body: 'test',
+    jobTitle: 'test',
+    method: 'test',
+    moreinfo: 'test',
+    msg: 'test',
+    subject: 'test',
+    reason: 'test',
+    website: 'test',
+  }
+  let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjY1ZWMzZTk3NTE1ZmM1MTM0NjQzM2QiLCJlbWFpbCI6ImFyZ2VsaW8uYmFjYUBnbWFpbC5jb20iLCJwd2QiOiIkMmIkMTAkVDdSOXhHOHE4R0RBejVwZEY5bDdSdVYyRE9Xd0JwOWtsamRibjNYU1ZYSk8wR1lxUEJadi4iLCJzdGF0dXMiOiJBY3RpdmUiLCJwcm9maWxlIjp7ImZpcnN0X25hbWUiOiJBcmdlbGlvIiwibGFzdF9uYW1lIjoiQmFjYSIsInJvbGUiOiJNYW5hZ2VyIiwicmVxcyI6W10sInJlcG9ydHMiOltdfSwiY2FuZGlkYXRlcyI6W10sImlhdCI6MTcyMzMxMTU5Mn0.jXxHXoZxVa0kX86_8TtnllRBGMqcOi7-dPH7MZ7scfI"
+
+  const saveNewTemplate = async (newTemplate) => {
+    try {
+        const resp = await fetch(`http://localhost:80/templates/addone/`, {
+            method: "POST",
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": token 
+        },
+            body: JSON.stringify(newTemplate)
+        })
+        if(!resp.ok) console.log("There was an error adding your template")
+        const data = await resp.json()
+        console.log(data)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 
+
+
+getTemplatesByUser() 
+
+
+//saveNewTemplate(newTemplate);
+//getTemplatesByUser()
 //checkOut()
-
 //updateActivity(job_id, updatedActivity)
-
 //submiteNewAct(newAct, job_id)
 //getActivityByJobId(jobid)
 //updateJob(job_id, updatedJob)
 //getJobsByProject(project_id)
-
 //getJobById(job_id)
-
 //findOneActivity(query)

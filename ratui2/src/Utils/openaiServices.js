@@ -11,9 +11,10 @@ const openai = new OpenAI({
         model: "gpt-3.5-turbo",
         messages: [systemPrompt, userPrompt],
       });
+      const emailContent = response.choices[0].message.content;
+      //console.log(response.choices[0].message.content)
+      console.log(emailContent)
 
-      console.log(response.choices[0].message.content)
-      const content = response.choices[0].message.content
-      return content
+      return emailContent
   } 
 

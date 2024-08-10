@@ -345,6 +345,25 @@ export const ContextWrapper = ({children})=> {
         }
     }
     
+    const saveNewTemplate = async (newTemplate) => {
+        try {
+            const resp = await fetch(`${uri}/templates/addone/`, {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` 
+            },
+                body: JSON.stringify(newTemplate)
+            })
+            if(!resp.ok) console.log("There was an error adding your template")
+            const data = await resp.json()
+            console.log(data)
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         
         <AppContext.Provider value={{
@@ -382,7 +401,8 @@ export const ContextWrapper = ({children})=> {
             findOneActivity,
             submiteNewAct,
             updateActivity,
-            getTemplatesByUser
+            getTemplatesByUser,
+            saveNewTemplate
             }}>
             {children}
         </AppContext.Provider>

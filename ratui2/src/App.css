@@ -133,5 +133,9 @@ p {
   margin-bottom: 20px;
 }
 
+a:hover {
+  background-color: lightgreen;
+}
+
 /* Responsive layout - when the screen is less than 768px wide, make the sidebar and the main content area stack on top of each other */
 
